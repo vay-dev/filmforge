@@ -1,0 +1,12 @@
+.home-page {
+  min-height: 100vh;
+
+  &__rows {
+    padding-top: 48px;
+  }
+
+  &__search-results {
+    padding-top: 100px;
+    min-height: 100vh;
+  }
+}

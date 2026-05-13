@@ -1,0 +1,61 @@
+.auth-gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 48px 24px;
+  text-align: center;
+  gap: 16px;
+
+  &__icon {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--radius-full);
+    background: var(--primary-dim);
+    border: 1px solid var(--primary-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+
+    .material-symbols-outlined {
+      font-size: 32px;
+      color: var(--primary);
+    }
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  &__subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 360px;
+    line-height: 1.6;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 12px 28px;
+    background: var(--primary);
+    color: #1a0e00;
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: filter var(--transition), transform var(--transition);
+
+    .material-symbols-outlined { font-size: 18px; }
+
+    &:hover { filter: brightness(1.1); }
+    &:active { transform: scale(0.97); }
+  }
+}

@@ -1,90 +1,113 @@
-@import "bootstrap/dist/css/bootstrap.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
 
-// variables.scss
-
-// ===== Color System ===== //
-$primary: #ff6b6b; // main brand color
-$secondary: #4ecdc4; // supporting color
-$accent: #ffe66d; // highlight/tertiary
-
+// ===== Design Tokens ===== //
 :root {
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
+  --bg: #080b14;
+  --surface: #101417;
+  --surface-card: #1c2333;
+  --surface-card-high: #242d40;
+  --surface-glass: rgba(16, 20, 23, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(24px);
 
-  --radius-sm: 375rem;
+  --primary: #f5a623;
+  --primary-dim: rgba(245, 166, 35, 0.15);
+  --primary-border: rgba(245, 166, 35, 0.3);
+  --primary-glow: 0 0 20px rgba(245, 166, 35, 0.25);
+
+  --text: #e0e2e6;
+  --text-muted: #8a95a8;
+  --text-dim: #4a5568;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  --transition: 0.25s ease;
+  --transition-slow: 0.5s ease;
 }
 
-// ===== Theme Handling ===== //
-body {
-  background-color: #ffffff;
-  color: #111111;
-  font-family: "Inter", sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-body.darkmode {
-  background-color: #0f0f23;
-  color: #ffffff;
-}
-
-.spin {
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-* {
+// ===== Reset ===== //
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 body {
-  height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-.badge {
-  font-size: 0.8rem;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  display: inline-block;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-// ===== Variants ===== //
-.badge-purple {
-  color: #a855f7;
-  background: linear-gradient(135deg, #a855f733, #a855f71a);
-  border: 1px solid rgba(168, 85, 247, 0.3);
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
 }
 
-.badge-amber {
-  color: #f59e0b;
-  background: linear-gradient(135deg, #f59e0b33, #f59e0b1a);
-  border: 1px solid rgba(245, 158, 11, 0.3);
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.badge-green {
-  color: #10b981;
-  background: linear-gradient(135deg, #10b98133, #10b9811a);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+// ===== Material Symbols ===== //
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
 }
 
-.rating-container {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-xs) var(--spacing-sm);
+// ===== Scrollbar ===== //
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-card-high);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dim);
+}
+
+// ===== Skeleton loading ===== //
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-card) 25%, var(--surface-card-high) 50%, var(--surface-card) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
   border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 0.9rem;
+}
+
+// ===== Utility ===== //
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
 }

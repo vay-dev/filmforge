@@ -1,0 +1,555 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FilmFlare - Home</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#1d2023",
+              "inverse-primary": "#835500",
+              "error-container": "#93000a",
+              "inverse-on-surface": "#2d3134",
+              "on-secondary-fixed-variant": "#404758",
+              secondary: "#bfc6db",
+              "on-primary-container": "#644000",
+              "surface-container-high": "#272a2d",
+              "on-secondary": "#293041",
+              "tertiary-fixed-dim": "#c4c6d3",
+              "primary-fixed": "#ffddb4",
+              "on-tertiary-fixed": "#181b25",
+              "secondary-container": "#42495a",
+              "tertiary-container": "#b3b5c2",
+              "on-primary": "#452b00",
+              outline: "#9f8e7a",
+              "on-background": "#e0e2e6",
+              "on-primary-fixed-variant": "#633f00",
+              "on-primary-fixed": "#291800",
+              "surface-variant": "#323538",
+              "secondary-fixed": "#dce2f8",
+              "surface-bright": "#363a3d",
+              background: "#101417",
+              "inverse-surface": "#e0e2e6",
+              "on-secondary-fixed": "#141b2b",
+              "on-surface": "#e0e2e6",
+              "on-secondary-container": "#b1b8cd",
+              "outline-variant": "#524534",
+              "on-tertiary-container": "#444752",
+              "surface-tint": "#ffb955",
+              "secondary-fixed-dim": "#bfc6db",
+              "primary-container": "#f5a623",
+              "on-error": "#690005",
+              "tertiary-fixed": "#e0e2ef",
+              "on-surface-variant": "#d7c3ae",
+              "primary-fixed-dim": "#ffb955",
+              primary: "#ffc880",
+              "surface-container-low": "#191c1f",
+              "surface-dim": "#101417",
+              error: "#ffb4ab",
+              "on-tertiary-fixed-variant": "#444651",
+              "surface-container-lowest": "#0b0f11",
+              "on-error-container": "#ffdad6",
+              "on-tertiary": "#2d303a",
+              tertiary: "#cfd1de",
+              "surface-container-highest": "#323538",
+              surface: "#101417",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "container-max": "1440px",
+              "margin-desktop": "48px",
+              unit: "8px",
+              gutter: "24px",
+              "margin-mobile": "16px",
+            },
+            fontFamily: {
+              "label-caps": ["Inter"],
+              "display-lg-mobile": ["Inter"],
+              "display-lg": ["Inter"],
+              "headline-md": ["Inter"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "display-sm": ["Inter"],
+            },
+            fontSize: {
+              "label-caps": [
+                "12px",
+                {
+                  lineHeight: "1.0",
+                  letterSpacing: "0.1em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-lg-mobile": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  fontWeight: "700",
+                },
+              ],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "1.3",
+                  fontWeight: "600",
+                },
+              ],
+              "body-md": [
+                "16px",
+                {
+                  lineHeight: "1.5",
+                  fontWeight: "400",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                {
+                  lineHeight: "1.6",
+                  fontWeight: "400",
+                },
+              ],
+              "display-sm": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #080b14; /* Deep ultra-dark */
+      }
+      .glow-button-primary {
+        box-shadow: 0 0 15px rgba(245, 166, 35, 0.3);
+      }
+      .movie-card:hover .progress-bar {
+        opacity: 1;
+      }
+      .movie-card:hover .hover-glow {
+        opacity: 1;
+      }
+      /* Custom scrollbar for carousels */
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body
+    class="text-on-surface font-body-md bg-background min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <!-- TopNavBar -->
+    <nav
+      class="bg-background/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-white/10 shadow-sm transition-all duration-300"
+    >
+      <div
+        class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto"
+      >
+        <!-- Brand -->
+        <a
+          class="text-headline-md font-headline-md text-primary tracking-tighter italic"
+          href="#"
+          >FilmFlare</a
+        >
+        <!-- Navigation Links (Desktop) -->
+        <div class="hidden md:flex items-center gap-8">
+          <a
+            class="text-primary font-bold border-b-2 border-primary pb-1 active:scale-95 transition-transform hover:bg-white/5 duration-300 rounded px-2"
+            href="#"
+            >Home</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-on-surface transition-colors active:scale-95 hover:bg-white/5 duration-300 rounded px-2"
+            href="#"
+            >Discover</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-on-surface transition-colors active:scale-95 hover:bg-white/5 duration-300 rounded px-2"
+            href="#"
+            >Watchlist</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-on-surface transition-colors active:scale-95 hover:bg-white/5 duration-300 rounded px-2"
+            href="#"
+            >AI Pick</a
+          >
+        </div>
+        <!-- Actions -->
+        <div class="flex items-center gap-4">
+          <button
+            aria-label="Search"
+            class="text-on-surface-variant hover:text-on-surface transition-colors hover:bg-white/5 p-2 rounded-full duration-300 active:scale-95"
+          >
+            <span class="material-symbols-outlined">search</span>
+          </button>
+          <button
+            aria-label="Notifications"
+            class="text-on-surface-variant hover:text-on-surface transition-colors hover:bg-white/5 p-2 rounded-full duration-300 active:scale-95"
+          >
+            <span class="material-symbols-outlined">notifications</span>
+          </button>
+          <button class="active:scale-95 transition-transform">
+            <img
+              alt="User Avatar"
+              class="w-10 h-10 rounded-full border border-outline-variant object-cover"
+              data-alt="A close-up studio portrait of a person used as a user avatar. They have a neutral expression, styled in a sleek, cinematic lighting setup with dark ambient tones and a subtle amber rim light to match the high-end, immersive streaming platform aesthetic."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcuBrEgR1MY3INXTiiLSM11PGiePqy7gsy_1FqV8ohvlpRDz9D628XgKYBS5XrkcHaPcuj9riNKZSdpVw4-O2koMKztiAiG8uP79qeFiAE---CINz7niCgzHD9utCFAXajV8uLViwXhqvYOomBB_X6VRe1MgEZDOuPIQrCJ2ySLDY0gOPoIWgGlOJ8c19OmJ86FQz703ZEZUhy4PkbERrVrWrtFa6hd87C3V_iOWpJrNv7pqkwslH7jWymRBx2NDIL1Di89norOWs"
+            />
+          </button>
+        </div>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <header
+      class="relative w-full h-[870px] min-h-[600px] flex items-end pb-24 pt-32 overflow-hidden"
+    >
+      <!-- Hero Background Image -->
+      <div class="absolute inset-0 z-0">
+        <img
+          alt="Hero Backdrop"
+          class="w-full h-full object-cover object-center"
+          data-alt="A breathtaking, wide-angle cinematic shot of a massive, swirling galaxy in deep space. The scene is dominated by deep blacks and rich blues, with brilliant stars shining against the void. The composition evokes a sense of awe and isolation, perfectly capturing a high-stakes, dramatic sci-fi epic atmosphere suitable for a premium movie streaming hero banner."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZslBNaMyqr99otu8et9mtqDTld87N3kZ_1IR6FnPyHwxMMoG5nTieJ8ORdBOjvGfjc3XSB1yxsL_3DXcE03EDU69AH2dOx1YC-PDM8JWcLhNglO7bKV7fBJQ0HTC3CKcaN9ufYEnRjU-2FiTK4f3ExDWD7GiZgt5Z_DRJdyPIQFfq-akQn4tFn4gTcw65FPlWaSJ81XoFamml45IqTGxj-UrjlklM9Kph9WI6sZax6LKCJiT5VnghoxMVuDInYq5-9fND7Wc-hv4"
+        />
+        <!-- Gradient Overlays for depth and text legibility -->
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-[#080B14] via-[#080B14]/60 to-transparent z-10"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-[#080B14]/80 via-transparent to-transparent z-10"
+        ></div>
+        <!-- Subtle Grain Texture Overlay (CSS simulated) -->
+        <div
+          class="absolute inset-0 z-10 opacity-20 mix-blend-overlay"
+          style="
+            background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E&quot;);
+          "
+        ></div>
+      </div>
+      <!-- Hero Content -->
+      <div
+        class="relative z-20 w-full max-w-container-max mx-auto px-margin-desktop md:px-margin-desktop px-margin-mobile flex flex-col gap-6"
+      >
+        <!-- Meta Info -->
+        <div class="flex items-center gap-4 flex-wrap">
+          <div class="flex items-center gap-2">
+            <span
+              class="material-symbols-outlined text-primary-container text-sm"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >star</span
+            >
+            <span class="text-on-surface font-label-caps text-label-caps"
+              >4.9/5</span
+            >
+          </div>
+          <span class="text-on-surface-variant font-label-caps text-label-caps"
+            >2024</span
+          >
+          <span class="text-on-surface-variant font-label-caps text-label-caps"
+            >2h 45m</span
+          >
+        </div>
+        <!-- Title -->
+        <h1
+          class="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface max-w-3xl drop-shadow-lg"
+        >
+          Interstellar Redux
+        </h1>
+        <!-- Genres (Pill Badges) -->
+        <div class="flex gap-3 flex-wrap">
+          <span
+            class="bg-white/15 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full text-label-caps font-label-caps text-on-surface tracking-wider uppercase"
+            >Sci-Fi</span
+          >
+          <span
+            class="bg-white/15 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full text-label-caps font-label-caps text-on-surface tracking-wider uppercase"
+            >Drama</span
+          >
+          <span
+            class="bg-white/15 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full text-label-caps font-label-caps text-on-surface tracking-wider uppercase"
+            >IMAX</span
+          >
+        </div>
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 mt-4">
+          <button
+            class="bg-primary-container text-[#1C2333] font-label-caps text-label-caps px-8 py-4 rounded-full flex items-center justify-center gap-2 glow-button-primary hover:bg-primary transition-colors active:scale-95 tracking-widest uppercase"
+          >
+            <span
+              class="material-symbols-outlined"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >play_arrow</span
+            >
+            Watch Trailer
+          </button>
+          <button
+            class="border border-on-surface text-on-surface font-label-caps text-label-caps px-8 py-4 rounded-full flex items-center justify-center gap-2 hover:bg-white/10 hover:border-primary-container transition-all active:scale-95 tracking-widest uppercase bg-[#080B14]/50 backdrop-blur-sm"
+          >
+            <span class="material-symbols-outlined">add</span>
+            Add to Watchlist
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content -->
+    <main
+      class="flex-1 w-full max-w-container-max mx-auto pb-32 flex flex-col gap-16 md:gap-24 relative z-20 -mt-10"
+    >
+      <!-- Trending Today Carousel -->
+      <section
+        class="pl-margin-mobile md:pl-margin-desktop flex flex-col gap-6"
+      >
+        <div
+          class="flex justify-between items-center pr-margin-mobile md:pr-margin-desktop"
+        >
+          <h2 class="text-headline-md font-headline-md text-on-surface">
+            Trending Today
+          </h2>
+          <a
+            class="text-primary-container font-label-caps text-label-caps hover:text-primary transition-colors uppercase tracking-wider flex items-center gap-1"
+            href="#"
+          >
+            See All
+            <span class="material-symbols-outlined text-sm">chevron_right</span>
+          </a>
+        </div>
+        <div
+          class="flex gap-4 overflow-x-auto hide-scrollbar pb-4 pr-margin-mobile md:pr-margin-desktop snap-x snap-mandatory"
+        >
+          <!-- Movie Card 1 -->
+          <div
+            class="movie-card group relative flex-none w-[160px] md:w-[220px] aspect-[2/3] rounded-lg overflow-hidden bg-[#1C2333] border border-white/10 cursor-pointer transition-transform duration-300 hover:scale-[1.05] snap-start"
+          >
+            <!-- Ambient Glow behind card on hover -->
+            <div
+              class="hover-glow absolute inset-0 bg-primary-container/20 blur-xl opacity-0 transition-opacity duration-300 z-0 pointer-events-none"
+            ></div>
+            <img
+              alt="Movie Poster"
+              class="w-full h-full object-cover relative z-10"
+              data-alt="A dark and moody movie poster featuring a dramatic silhouette of a lone figure standing against a glowing, neon-lit cyberpunk cityscape. Rain is falling, catching the light in a high-contrast, moody cinematic style with deep blues and vivid amber highlights. The overall aesthetic is gritty, futuristic, and premium."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC-JE2-L8EFsNOOixwVPBuK05RQ7ktAL7hsM-A0lIJCHEgyLLK3fUJ1JxkZnk-agObysKeKbK_UDh30yKoa82MuBHuBRx4CwebtLNBZKtBplCKpvOPr79-fh_dVekKaIyGBgtbEqNOqmrW6bP85ujWOLdaKrNeGG-nyzfyHiAze-RIHl4D63WNpiKCMltFJ8X4dg_n_gPth7c-u6qVZp5u29KS8kpR1ai02PXXFHWkdpH7LD9dLEtPxY-F3EkH6Tbx3VK5Y4zOkG4"
+            />
+            <!-- Hover Overlay -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-[#1C2333]/95 via-[#1C2333]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex flex-col justify-end p-4"
+            >
+              <button
+                class="absolute top-3 right-3 text-on-surface hover:text-primary-container transition-colors p-1 rounded-full bg-black/40 backdrop-blur-md"
+              >
+                <span class="material-symbols-outlined text-sm">bookmark</span>
+              </button>
+              <h3
+                class="text-body-md font-headline-md text-on-surface truncate mb-1"
+              >
+                Neon Drift
+              </h3>
+              <div class="flex items-center gap-1 text-primary-container">
+                <span
+                  class="material-symbols-outlined text-xs"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >star</span
+                >
+                <span class="text-xs font-label-caps">4.7</span>
+              </div>
+            </div>
+            <!-- Progress Bar (Simulated Continue Watching) -->
+            <div
+              class="progress-bar absolute bottom-0 left-0 h-[2px] bg-primary-container w-[45%] opacity-0 transition-opacity duration-300 z-30 shadow-[0_0_8px_rgba(245,166,35,0.8)]"
+            ></div>
+          </div>
+          <!-- Movie Card 2 -->
+          <div
+            class="movie-card group relative flex-none w-[160px] md:w-[220px] aspect-[2/3] rounded-lg overflow-hidden bg-[#1C2333] border border-white/10 cursor-pointer transition-transform duration-300 hover:scale-[1.05] snap-start"
+          >
+            <div
+              class="hover-glow absolute inset-0 bg-primary-container/20 blur-xl opacity-0 transition-opacity duration-300 z-0 pointer-events-none"
+            ></div>
+            <img
+              alt="Movie Poster"
+              class="w-full h-full object-cover relative z-10"
+              data-alt="A stark, minimalist movie poster displaying an abstract, barren desert landscape under a harsh, glaring sun. The colors are muted earth tones with heavy shadows, creating a tense, psychological thriller mood. The texture is gritty and cinematic, fitting a high-end streaming service catalog."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM9bVrj6-ujlA9i50jYGg3QxBWiK1d5DIm136hjjnzv8_thJlOdnUaqMK8HzmTSmynAZcLuylbN7-1TFt84a3bWbyrN0C1TncUlnUmqlY72ZHEHOIvJcRTf1Rp-dIvmdaWCMWZtc1qoBgH1khMxgQVkntunoXtwA-I_MmBVVWYA8McrSnRV-NpipfvvTePrIqpAIe410sWGxbP_-khrpe4AfQYCcjN5qWLZmt11tBILfZmll2PTbylsOz3bQu3biYuo7SiXK2XdcI"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-[#1C2333]/95 via-[#1C2333]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex flex-col justify-end p-4"
+            >
+              <button
+                class="absolute top-3 right-3 text-on-surface hover:text-primary-container transition-colors p-1 rounded-full bg-black/40 backdrop-blur-md"
+              >
+                <span class="material-symbols-outlined text-sm">bookmark</span>
+              </button>
+              <h3
+                class="text-body-md font-headline-md text-on-surface truncate mb-1"
+              >
+                Dune Shadows
+              </h3>
+              <div class="flex items-center gap-1 text-primary-container">
+                <span
+                  class="material-symbols-outlined text-xs"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >star</span
+                >
+                <span class="text-xs font-label-caps">4.5</span>
+              </div>
+            </div>
+          </div>
+          <!-- Movie Card 3 -->
+          <div
+            class="movie-card group relative flex-none w-[160px] md:w-[220px] aspect-[2/3] rounded-lg overflow-hidden bg-[#1C2333] border border-white/10 cursor-pointer transition-transform duration-300 hover:scale-[1.05] snap-start"
+          >
+            <div
+              class="hover-glow absolute inset-0 bg-primary-container/20 blur-xl opacity-0 transition-opacity duration-300 z-0 pointer-events-none"
+            ></div>
+            <img
+              alt="Movie Poster"
+              class="w-full h-full object-cover relative z-10"
+              data-alt="An intense, action-oriented movie poster showing a speeding vintage muscle car tearing down a neon-lit highway at night. Motion blur is used extensively to convey speed. The color palette is dominated by deep charcoal blacks and vibrant synth-wave purples and oranges. The image feels fast-paced and premium."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkmAbhk14P41gxsDyJgp7XUNWNTzpwuiVC4gQy2JlzF599mlhEoVRBLDMEen-eVyo0MSDKDG3EY9H-opEj-uHsTQlod4RMs60ZkFBVg2JTr3J36vELiJCCXKqCNNcGfFw3j3tDclDGwZRlKvZSFU12rKC7E6_jPd6AAM_yKp7fvyFzMiLrAKJNOw_pYIT8hgEOOsKa8Bw9c3NjmyJpJnNsmxQkjjh3twZZE_gGkml5PPJk3V7qvhdRSwZCHNWGjB2uA-b4T6oPVUE"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-[#1C2333]/95 via-[#1C2333]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex flex-col justify-end p-4"
+            >
+              <button
+                class="absolute top-3 right-3 text-on-surface hover:text-primary-container transition-colors p-1 rounded-full bg-black/40 backdrop-blur-md"
+              >
+                <span class="material-symbols-outlined text-sm">bookmark</span>
+              </button>
+              <h3
+                class="text-body-md font-headline-md text-on-surface truncate mb-1"
+              >
+                Velocity
+              </h3>
+              <div class="flex items-center gap-1 text-primary-container">
+                <span
+                  class="material-symbols-outlined text-xs"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >star</span
+                >
+                <span class="text-xs font-label-caps">4.2</span>
+              </div>
+            </div>
+          </div>
+          <!-- Movie Card 4 -->
+          <div
+            class="movie-card group relative flex-none w-[160px] md:w-[220px] aspect-[2/3] rounded-lg overflow-hidden bg-[#1C2333] border border-white/10 cursor-pointer transition-transform duration-300 hover:scale-[1.05] snap-start"
+          >
+            <div
+              class="hover-glow absolute inset-0 bg-primary-container/20 blur-xl opacity-0 transition-opacity duration-300 z-0 pointer-events-none"
+            ></div>
+            <img
+              alt="Movie Poster"
+              class="w-full h-full object-cover relative z-10"
+              data-alt="A creepy, atmospheric horror movie poster featuring an isolated, run-down cabin deep in a foggy, dark forest. The lighting is very low key, relying on a single, unnatural pale blue light source emanating from a broken window. The aesthetic is chilling, suspenseful, and highly detailed, perfect for a premium dark-mode UI."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb9yxLAA5Im2HlABiYcpWZGbllVT2HdxM_ms_tRsNVlNTZftdl24JwLjHAySSGuAsKG96z89wCvYOvX8jmtvYe7zoUXt_9KXZrbQPt-DiFpLcmm-wPQDQvJ-IvO_If127CTXCNMEpo-qrNXA88N2qT4RCf31GVY7I4Y0nOjrrbUcHBCocD3Jsg6n960TwZm4VE3I7Ej1LCwqdA41tJvgLRHsEME9M9cSy9FvfHvcx2gMPkp1H5Dj4YaKufPRsAyon8Tf_iBBaDe4A"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-[#1C2333]/95 via-[#1C2333]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex flex-col justify-end p-4"
+            >
+              <button
+                class="absolute top-3 right-3 text-on-surface hover:text-primary-container transition-colors p-1 rounded-full bg-black/40 backdrop-blur-md"
+              >
+                <span class="material-symbols-outlined text-sm">bookmark</span>
+              </button>
+              <h3
+                class="text-body-md font-headline-md text-on-surface truncate mb-1"
+              >
+                The Cabin
+              </h3>
+              <div class="flex items-center gap-1 text-primary-container">
+                <span
+                  class="material-symbols-outlined text-xs"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >star</span
+                >
+                <span class="text-xs font-label-caps">4.8</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="bg-surface-container-lowest w-full py-12 border-t border-outline-variant"
+    >
+      <div
+        class="flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-8 max-w-container-max mx-auto"
+      >
+        <!-- Brand -->
+        <div class="text-body-lg font-headline-md text-primary italic">
+          FilmFlare
+        </div>
+        <!-- Links -->
+        <div class="flex flex-wrap justify-center gap-6">
+          <a
+            class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors tracking-widest uppercase"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors tracking-widest uppercase"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors tracking-widest uppercase"
+            href="#"
+            >Help Center</a
+          >
+          <a
+            class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors tracking-widest uppercase"
+            href="#"
+            >Contact</a
+          >
+        </div>
+        <!-- Copyright -->
+        <div
+          class="font-label-caps text-label-caps text-on-surface-variant tracking-wider uppercase"
+        >
+          © 2024 FilmFlare Cinematic. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

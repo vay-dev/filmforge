@@ -1,0 +1,132 @@
+.movie-row {
+  padding: 0 0 40px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px 16px;
+    gap: 12px;
+
+    @media (max-width: 768px) {
+      padding: 0 16px 12px;
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+    background: rgba(245, 166, 35, 0.12);
+    border: 1px solid rgba(245, 166, 35, 0.3);
+    border-radius: var(--radius-full);
+    padding: 2px 9px;
+  }
+
+  &__arrows {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  &__arrow {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    background: var(--surface-card);
+    border: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--transition);
+
+    .material-symbols-outlined { font-size: 20px; }
+
+    &:hover:not(:disabled) {
+      background: var(--surface-card-high);
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+
+  // ── Embla structure ─────────────────────────────────────────────────────────
+
+  &__viewport {
+    overflow: hidden;
+    padding: 4px 0 12px;
+    // Left padding so first card aligns with header text
+    padding-left: 48px;
+
+    @media (max-width: 768px) {
+      padding-left: 16px;
+    }
+  }
+
+  &__container {
+    display: flex;
+    gap: 16px;
+    // Embla needs this to be the direct flex parent of slides
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: pan-y;
+
+    @media (max-width: 768px) {
+      gap: 12px;
+    }
+  }
+
+  &__slide {
+    flex: 0 0 185px;
+    min-width: 0;
+
+    @media (max-width: 480px) {
+      flex: 0 0 155px;
+    }
+
+    &--loading {
+      flex: 0 0 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__skeleton-card {
+    width: 100%;
+    aspect-ratio: 2/3;
+    border-radius: var(--radius-lg);
+  }
+
+  &__spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid var(--surface-card-high);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: row-spin 0.8s linear infinite;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes row-spin {
+  to { transform: rotate(360deg); }
+}

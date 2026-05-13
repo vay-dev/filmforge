@@ -1,0 +1,318 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-surface {
+        background: rgba(28, 35, 51, 0.4);
+        backdrop-filter: blur(40px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .amber-glow-hover:hover {
+        box-shadow: 0 0 15px rgba(245, 166, 35, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(245, 166, 35, 0.4);
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              outline: "#9f8e7a",
+              "on-secondary": "#293041",
+              "on-secondary-fixed-variant": "#404758",
+              "on-primary": "#452b00",
+              "on-error-container": "#ffdad6",
+              "surface-container-highest": "#323538",
+              "primary-container": "#f5a623",
+              "on-tertiary-container": "#444752",
+              "on-primary-fixed-variant": "#633f00",
+              "tertiary-fixed": "#e0e2ef",
+              "on-tertiary-fixed-variant": "#444651",
+              "secondary-fixed-dim": "#bfc6db",
+              "on-tertiary": "#2d303a",
+              primary: "#ffc880",
+              "on-error": "#690005",
+              "surface-tint": "#ffb955",
+              "surface-dim": "#101417",
+              "primary-fixed-dim": "#ffb955",
+              "inverse-on-surface": "#2d3134",
+              "on-primary-container": "#644000",
+              "surface-container-high": "#272a2d",
+              "error-container": "#93000a",
+              "outline-variant": "#524534",
+              background: "#101417",
+              "surface-container-low": "#191c1f",
+              "primary-fixed": "#ffddb4",
+              "inverse-primary": "#835500",
+              surface: "#101417",
+              "surface-container": "#1d2023",
+              "secondary-container": "#42495a",
+              "tertiary-fixed-dim": "#c4c6d3",
+              "tertiary-container": "#b3b5c2",
+              "on-surface-variant": "#d7c3ae",
+              "on-background": "#e0e2e6",
+              error: "#ffb4ab",
+              "surface-variant": "#323538",
+              "surface-bright": "#363a3d",
+              "on-tertiary-fixed": "#181b25",
+              "on-secondary-fixed": "#141b2b",
+              "secondary-fixed": "#dce2f8",
+              "on-primary-fixed": "#291800",
+              tertiary: "#cfd1de",
+              "on-secondary-container": "#b1b8cd",
+              "inverse-surface": "#e0e2e6",
+              "surface-container-lowest": "#0b0f11",
+              secondary: "#bfc6db",
+              "on-surface": "#e0e2e6",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-mobile": "16px",
+              "margin-desktop": "48px",
+              unit: "8px",
+              gutter: "24px",
+              "container-max": "1440px",
+            },
+            fontFamily: {
+              "body-md": ["Inter"],
+              "label-caps": ["Inter"],
+              "display-sm": ["Inter"],
+              "body-lg": ["Inter"],
+              "headline-md": ["Inter"],
+              "display-lg-mobile": ["Inter"],
+              "display-lg": ["Inter"],
+            },
+            fontSize: {
+              "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+              "label-caps": [
+                "12px",
+                {
+                  lineHeight: "1.0",
+                  letterSpacing: "0.1em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-sm": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+              "display-lg-mobile": [
+                "32px",
+                { lineHeight: "1.2", fontWeight: "700" },
+              ],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-background text-on-surface font-body-md min-h-screen flex items-center justify-center p-gutter"
+  >
+    <!-- TopNavBar - Included per JSON guidance, although suppressed on task-focused components, we render for context -->
+    <nav
+      class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/50"
+    >
+      <div class="font-headline-md italic font-bold text-primary-container">
+        FilmFlare
+      </div>
+      <div class="hidden md:flex gap-gutter">
+        <a
+          class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md"
+          href="#"
+          >Home</a
+        >
+        <a
+          class="text-primary-container border-b-2 border-primary-container pb-1 font-body-md text-body-md"
+          href="#"
+          >Discover</a
+        >
+        <a
+          class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md"
+          href="#"
+          >Watchlist</a
+        >
+        <a
+          class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md"
+          href="#"
+          >AI Pick</a
+        >
+      </div>
+      <div class="flex items-center gap-4">
+        <span
+          class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary-container"
+          >search</span
+        >
+        <div
+          class="w-8 h-8 rounded-full bg-surface-container-high border border-white/10 overflow-hidden"
+        >
+          <img
+            alt="User profile"
+            data-alt="A professional headshot of a person with friendly features, captured in a cinematic high-end studio setting. The lighting is soft and directional, creating subtle highlights on the face against a deep charcoal, blurred background that fits the prestigious FilmFlare aesthetic. The image is crisp, with a premium editorial feel, utilizing the rich navy and amber color palette of the brand."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZIucRIHAmXVIJEtYU1U5bPWIjoe-u7qe7agmAlHtLuQMC3c6jQFzD7mZSgW_3EgPWRDT3UT06ekv1Fuecu8e6eIHyb2uhJlCLOMDOEqErm-Fu7t5L1rP0Ky313RCs8rYpGULpFRPOCpugUqj6lCpCN1bWK2-09BRAvdVx7A_9QcEffjZGLZ2ybYTqMBpsPqT5qbMnvKlYjI3YeWgTsdoorKXAwVIdN3DGJ7Iew6Czfj-KZVX_vhKXG2ElYEuona9Mb6ucTlH7haQ"
+          />
+        </div>
+      </div>
+    </nav>
+    <!-- Main Content Canvas -->
+    <main class="w-full max-w-[320px] pt-24 pb-12">
+      <!-- Movie Card Component: Minimal & Focused Variant -->
+      <article
+        class="group relative flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-500 hover:scale-[1.02] border border-white/5"
+      >
+        <!-- Top Section: High-Quality Poster -->
+        <div class="relative aspect-[2/3] overflow-hidden rounded-t-xl">
+          <img
+            alt="Movie Poster"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            data-alt="A dramatic cinematic movie poster featuring a solitary figure standing in a vast, futuristic neon-lit city at night. The lighting is dominated by deep navy shadows and striking amber glowing streaks from distant flying vehicles. The atmosphere is high-stakes and editorial, with a mist-covered street reflecting the golden city lights. The visual style is hyper-realistic and tech-forward, echoing a prestigious private screening room experience."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuFGtEss4vQQyX0NI0TNz_e9qkIuiedT_n_mqbzmQQDwOfORvYbU6B1dH1d_nifOTbDHza6f2P_nLfckNxCHpsOLxaICsfJPovLwtr53pxLiYAJdGyJDcBAC-DpZflJ9eMqEGUCqzkOqFDGtdLFEH55P4M6XkOjIcqRKE6MS7HnyQMr8Ghs49uFy9xxAf-Vp613KxWZ3w9p048gBLtZTq6FIOT85KpEwmdn0h3kyEMiIjc_K-IT2TW5uBjhrCCQf4JOT7ZB0AU8lg"
+          />
+          <!-- Subtle Gradient Overlay -->
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-60"
+          ></div>
+          <!-- Watch Progress Indicator (Amber Accent) -->
+          <div
+            class="absolute bottom-0 left-0 h-1 bg-primary-container w-1/3 shadow-[0_0_10px_rgba(245,166,35,0.6)]"
+          ></div>
+        </div>
+        <!-- Middle Section: Content -->
+        <div class="p-6 space-y-3">
+          <h2
+            class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight"
+          >
+            The Midnight Protocol
+          </h2>
+          <p
+            class="font-body-md text-body-md text-on-surface-variant line-clamp-1"
+          >
+            In a world of digital shadows, one signal changes everything.
+          </p>
+        </div>
+        <!-- Bottom Section: Action Bar -->
+        <div
+          class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-white/5"
+        >
+          <div class="flex gap-4">
+            <button
+              class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant glass-surface transition-all duration-300 amber-glow-hover"
+            >
+              <span
+                class="material-symbols-outlined text-[20px]"
+                data-icon="favorite"
+                >favorite</span
+              >
+            </button>
+            <button
+              class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant glass-surface transition-all duration-300 amber-glow-hover"
+            >
+              <span
+                class="material-symbols-outlined text-[20px]"
+                data-icon="share"
+                >share</span
+              >
+            </button>
+            <button
+              class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant glass-surface transition-all duration-300 amber-glow-hover"
+            >
+              <span
+                class="material-symbols-outlined text-[20px]"
+                data-icon="bookmark"
+                >bookmark</span
+              >
+            </button>
+          </div>
+          <span
+            class="font-label-caps text-label-caps text-primary-container bg-primary-container/10 px-3 py-1.5 rounded-full border border-primary-container/20"
+          >
+            SCI-FI
+          </span>
+        </div>
+        <!-- Hover Backdrop Glow (Theatrical) -->
+        <div
+          class="absolute -inset-2 bg-primary-container/5 blur-2xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        ></div>
+      </article>
+    </main>
+    <!-- Footer - Included per JSON guidance -->
+    <footer
+      class="fixed bottom-0 left-0 w-full px-margin-desktop py-6 flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-container-lowest border-t border-white/5"
+    >
+      <div class="font-headline-md font-bold text-primary-container text-lg">
+        FilmFlare
+      </div>
+      <div class="flex gap-gutter">
+        <a
+          class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps"
+          href="#"
+          >Privacy</a
+        >
+        <a
+          class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps"
+          href="#"
+          >Terms</a
+        >
+        <a
+          class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps"
+          href="#"
+          >Support</a
+        >
+        <a
+          class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps"
+          href="#"
+          >About</a
+        >
+      </div>
+      <p
+        class="font-label-caps text-label-caps text-on-surface-variant opacity-50 text-[10px]"
+      >
+        © 2024 FilmFlare Cinematic. All rights reserved.
+      </p>
+    </footer>
+  </body>
+</html>

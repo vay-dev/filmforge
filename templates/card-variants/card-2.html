@@ -1,0 +1,350 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              outline: "#9f8e7a",
+              "on-secondary": "#293041",
+              "on-secondary-fixed-variant": "#404758",
+              "on-primary": "#452b00",
+              "on-error-container": "#ffdad6",
+              "surface-container-highest": "#323538",
+              "primary-container": "#f5a623",
+              "on-tertiary-container": "#444752",
+              "on-primary-fixed-variant": "#633f00",
+              "tertiary-fixed": "#e0e2ef",
+              "on-tertiary-fixed-variant": "#444651",
+              "secondary-fixed-dim": "#bfc6db",
+              "on-tertiary": "#2d303a",
+              primary: "#ffc880",
+              "on-error": "#690005",
+              "surface-tint": "#ffb955",
+              "surface-dim": "#101417",
+              "primary-fixed-dim": "#ffb955",
+              "inverse-on-surface": "#2d3134",
+              "on-primary-container": "#644000",
+              "surface-container-high": "#272a2d",
+              "error-container": "#93000a",
+              "outline-variant": "#524534",
+              background: "#101417",
+              "surface-container-low": "#191c1f",
+              "primary-fixed": "#ffddb4",
+              "inverse-primary": "#835500",
+              surface: "#101417",
+              "surface-container": "#1d2023",
+              "secondary-container": "#42495a",
+              "tertiary-fixed-dim": "#c4c6d3",
+              "tertiary-container": "#b3b5c2",
+              "on-surface-variant": "#d7c3ae",
+              "on-background": "#e0e2e6",
+              error: "#ffb4ab",
+              "surface-variant": "#323538",
+              "surface-bright": "#363a3d",
+              "on-tertiary-fixed": "#181b25",
+              "on-secondary-fixed": "#141b2b",
+              "secondary-fixed": "#dce2f8",
+              "on-primary-fixed": "#291800",
+              tertiary: "#cfd1de",
+              "on-secondary-container": "#b1b8cd",
+              "inverse-surface": "#e0e2e6",
+              "surface-container-lowest": "#0b0f11",
+              secondary: "#bfc6db",
+              "on-surface": "#e0e2e6",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-mobile": "16px",
+              "margin-desktop": "48px",
+              unit: "8px",
+              gutter: "24px",
+              "container-max": "1440px",
+            },
+            fontFamily: {
+              "body-md": ["Inter"],
+              "label-caps": ["Inter"],
+              "display-sm": ["Inter"],
+              "body-lg": ["Inter"],
+              "headline-md": ["Inter"],
+              "display-lg-mobile": ["Inter"],
+              "display-lg": ["Inter"],
+            },
+            fontSize: {
+              "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+              "label-caps": [
+                "12px",
+                {
+                  lineHeight: "1.0",
+                  letterSpacing: "0.1em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-sm": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+              "display-lg-mobile": [
+                "32px",
+                { lineHeight: "1.2", fontWeight: "700" },
+              ],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass-panel {
+        background: rgba(16, 20, 23, 0.4);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .movie-card-glow:hover {
+        box-shadow: 0 0 30px rgba(245, 166, 35, 0.15);
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background font-body-md min-h-screen flex items-center justify-center p-gutter"
+  >
+    <!-- Top Navigation Anchor (Simulated based on Shared Components) -->
+    <nav
+      class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/50"
+    >
+      <div class="font-headline-md italic font-bold text-primary-container">
+        FilmFlare
+      </div>
+      <div class="hidden md:flex gap-gutter items-center">
+        <a
+          class="font-body-md text-primary-container border-b-2 border-primary-container pb-1"
+          href="#"
+          >Discover</a
+        >
+        <a
+          class="font-body-md text-on-surface-variant hover:text-on-surface transition-colors"
+          href="#"
+          >Watchlist</a
+        >
+        <a
+          class="font-body-md text-on-surface-variant hover:text-on-surface transition-colors"
+          href="#"
+          >AI Pick</a
+        >
+      </div>
+      <div class="flex items-center gap-unit">
+        <span
+          class="material-symbols-outlined text-primary-container p-2 hover:bg-white/5 rounded-lg transition-colors cursor-pointer"
+          >search</span
+        >
+        <div
+          class="w-8 h-8 rounded-full bg-secondary-container overflow-hidden border border-white/10"
+        >
+          <img
+            alt="User profile"
+            class="w-full h-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzhmNKgVWWAt8aMy27XjWY9G03Buex9w3qX78lKcIGVy595qL2y4IvnDpyB8oskRuUJe1_vdDsXi4R639qbWNXqRwt-nWQ5aVttH5EP47Tn8xkWiIZHDCJNe5qppZx7jVRdjNCzaMaodiYnvZWkghixrY30z03dmenXxG2eRdJ_vC7JQG9FXpNCt-Bcw7WT5Zy2cJM3SYYmXiwMWxuLP1B1NlZFU923DeOyv015pduJUawMs6gXfI0Mrk0IQcHc0rZXrg4dH96YfA"
+          />
+        </div>
+      </div>
+    </nav>
+    <!-- Main Container -->
+    <main
+      class="w-full max-w-container-max flex flex-col items-center justify-center pt-24 pb-12"
+    >
+      <!-- Section Header -->
+      <div class="w-full mb-12 text-center">
+        <span
+          class="font-label-caps text-label-caps text-primary-container mb-2 block"
+          >FEATURED PRESENTATION</span
+        >
+        <h1 class="font-display-lg text-display-lg text-on-surface">
+          Cinematic Excellence
+        </h1>
+      </div>
+      <!-- Glassmorphic Movie Card -->
+      <div
+        class="relative group w-full max-w-[420px] aspect-[2/3] rounded-xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.02] movie-card-glow border border-white/5 shadow-2xl"
+      >
+        <!-- Full Bleed Poster Image -->
+        <div class="absolute inset-0 w-full h-full">
+          <img
+            class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+            data-alt="A moody, high-contrast cinematic movie poster featuring a mysterious silhouette standing in a rain-slicked neon street at night. The lighting is dominated by deep blues and vibrant amber glows reflecting off puddles. The overall aesthetic is editorial and prestigious, with a heavy cinematic grain and dramatic lighting that emphasizes a high-stakes, tech-forward atmosphere."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYUWhftvnqzuVTFX9AzFn_KqzkK5YjMAYfLkRSbC9T73MTnodtjV05RKm8LSQr5IUpFKVhCa8VVko0Zw63Y9zmSrmHj6f0IJUZkO2ZCAuEz19uyoGVLVKjDXf-EEAw3ShQDyRQQ_NbHMI8huGsNu1XQGhzQe49QeWGPlgcFsIPNAy2eaqg-nNMnGZwx-EYM-FfUhtYcwTFVqGAxZap9o7qLnoh3w9YZsHs1mpKmJggICAjimwlkFcIxDqYlql6ndt1jJqCQk_JsWc"
+          />
+          <!-- Top Vignette -->
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent opacity-80"
+          ></div>
+          <!-- Bottom Vignette -->
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"
+          ></div>
+        </div>
+        <!-- Premium Badge (Top Right) -->
+        <div class="absolute top-gutter right-gutter">
+          <div
+            class="px-3 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full"
+          >
+            <span
+              class="font-label-caps text-[10px] text-white tracking-widest uppercase"
+              >4K ULTRA HD</span
+            >
+          </div>
+        </div>
+        <!-- Content Overlay Panel -->
+        <div
+          class="absolute bottom-0 left-0 w-full p-gutter glass-panel flex flex-col gap-4"
+        >
+          <!-- Title and Ratings -->
+          <div class="space-y-1">
+            <div class="flex justify-between items-start">
+              <h2
+                class="font-headline-md text-headline-md text-white leading-tight"
+              >
+                The Midnight Protocol
+              </h2>
+              <div
+                class="flex items-center gap-1 bg-primary-container/20 px-2 py-0.5 rounded-lg border border-primary-container/30"
+              >
+                <span
+                  class="material-symbols-outlined text-primary-container text-sm"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >star</span
+                >
+                <span class="font-label-caps text-primary-container">8.9</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="font-label-caps text-on-surface-variant">2024</span>
+              <div class="w-1 h-1 rounded-full bg-white/20"></div>
+              <span class="font-label-caps text-on-surface-variant"
+                >154 MIN</span
+              >
+              <div class="w-1 h-1 rounded-full bg-white/20"></div>
+              <span class="font-label-caps text-on-surface-variant"
+                >SCI-FI NOIR</span
+              >
+            </div>
+          </div>
+          <!-- Action Bar -->
+          <div class="flex items-center justify-between gap-gutter pt-2">
+            <div class="flex gap-2">
+              <button
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 transition-all group/btn"
+              >
+                <span
+                  class="material-symbols-outlined text-white text-[20px] group-hover/btn:scale-110 transition-transform"
+                  data-icon="favorite"
+                  >favorite</span
+                >
+              </button>
+              <button
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 transition-all group/btn"
+              >
+                <span
+                  class="material-symbols-outlined text-white text-[20px] group-hover/btn:scale-110 transition-transform"
+                  data-icon="share"
+                  >share</span
+                >
+              </button>
+            </div>
+            <button
+              class="flex-1 py-3 bg-primary-container text-on-primary font-label-caps text-center rounded-full flex items-center justify-center gap-2 hover:brightness-110 transition-all active:scale-95 shadow-[0_0_15px_rgba(245,166,35,0.3)]"
+            >
+              <span
+                class="material-symbols-outlined text-[20px]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >play_arrow</span
+              >
+              WATCH NOW
+            </button>
+          </div>
+          <!-- Hover Progress Bar -->
+          <div
+            class="absolute bottom-0 left-0 w-full h-[3px] bg-white/5 overflow-hidden"
+          >
+            <div
+              class="h-full bg-primary-container w-0 group-hover:w-[65%] transition-all duration-1000 ease-out"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer Anchor (Simulated based on Shared Components) -->
+      <footer
+        class="w-full px-margin-desktop py-12 mt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-gutter"
+      >
+        <div class="font-headline-md font-bold text-primary-container">
+          FilmFlare
+        </div>
+        <div class="flex gap-gutter">
+          <a
+            class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Privacy</a
+          >
+          <a
+            class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Terms</a
+          >
+          <a
+            class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Support</a
+          >
+        </div>
+        <p
+          class="font-label-caps text-label-caps text-on-surface-variant opacity-50"
+        >
+          © 2024 FilmFlare Cinematic. All rights reserved.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

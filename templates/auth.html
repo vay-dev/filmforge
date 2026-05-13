@@ -1,0 +1,360 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FilmFlare - Sign In</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-on-surface": "#233143",
+              "secondary-container": "#42495a",
+              "surface-dim": "#051424",
+              "tertiary-fixed": "#e0e2ef",
+              "surface-container": "#122131",
+              "on-primary-container": "#644000",
+              "inverse-surface": "#d4e4fa",
+              "surface-container-low": "#0d1c2d",
+              "surface-tint": "#ffb955",
+              "on-primary-fixed-variant": "#633f00",
+              "on-secondary-fixed-variant": "#404758",
+              background: "#051424",
+              "on-tertiary-fixed": "#181b25",
+              "surface-container-lowest": "#010f1f",
+              "on-primary-fixed": "#291800",
+              primary: "#ffc880",
+              "on-primary": "#452b00",
+              "surface-container-high": "#1c2b3c",
+              "on-tertiary-fixed-variant": "#444651",
+              "on-surface": "#d4e4fa",
+              "primary-container": "#f5a623",
+              secondary: "#bfc6db",
+              "on-error": "#690005",
+              "on-tertiary-container": "#444752",
+              "on-surface-variant": "#d7c3ae",
+              surface: "#051424",
+              "tertiary-container": "#b3b5c2",
+              "on-tertiary": "#2d303a",
+              "inverse-primary": "#835500",
+              "error-container": "#93000a",
+              "surface-variant": "#273647",
+              "on-secondary": "#293041",
+              "surface-bright": "#2c3a4c",
+              "secondary-fixed-dim": "#bfc6db",
+              tertiary: "#cfd1de",
+              error: "#ffb4ab",
+              "on-error-container": "#ffdad6",
+              "primary-fixed": "#ffddb4",
+              "surface-container-highest": "#273647",
+              "on-secondary-container": "#b1b8cd",
+              "outline-variant": "#524534",
+              "primary-fixed-dim": "#ffb955",
+              "tertiary-fixed-dim": "#c4c6d3",
+              "secondary-fixed": "#dce2f8",
+              "on-secondary-fixed": "#141b2b",
+              outline: "#9f8e7a",
+              "on-background": "#d4e4fa",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              md: "24px",
+              "margin-desktop": "48px",
+              lg: "48px",
+              xs: "4px",
+              xl: "80px",
+              sm: "12px",
+              base: "8px",
+              "container-max": "1440px",
+              gutter: "24px",
+              "margin-mobile": "16px",
+            },
+            fontFamily: {
+              "display-lg": ["Inter"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "headline-lg": ["Inter"],
+              "display-sm": ["Inter"],
+              "headline-md": ["Inter"],
+              "headline-lg-mobile": ["Inter"],
+              "label-md": ["Inter"],
+              "label-sm": ["Inter"],
+            },
+            fontSize: {
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "headline-lg": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "600" },
+              ],
+              "display-sm": [
+                "36px",
+                {
+                  lineHeight: "44px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "36px", fontWeight: "600" },
+              ],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "500",
+                },
+              ],
+              "label-sm": [
+                "12px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #080b14;
+        font-family: "Inter", sans-serif;
+      }
+      .glass-panel {
+        background: rgba(16, 20, 23, 0.85);
+        backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+      }
+      .amber-glow {
+        border: 1px solid rgba(245, 166, 35, 0.3);
+        box-shadow: 0 0 15px rgba(245, 166, 35, 0.2);
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="text-on-surface antialiased overflow-hidden">
+    <!-- Background Content (Simulating the App behind the modal) -->
+    <main
+      class="relative h-screen w-screen flex flex-col items-center justify-center overflow-hidden"
+    >
+      <!-- Cinematic Hero Background -->
+      <div class="absolute inset-0 z-0">
+        <img
+          class="w-full h-full object-cover opacity-40 blur-sm"
+          data-alt="A cinematic low-angle wide shot of a futuristic theater interior with rows of empty plush seats. The atmosphere is filled with a mysterious deep blue ambient light and subtle golden sparks floating in the air. A vast, glowing screen in the distance illuminates the dark silhouettes of the architectural lines, creating a high-contrast nocturnal aesthetic in line with the FilmFlare brand. The mood is sophisticated and dramatic."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbXiHa1gzXMxj5UCFc-y3KRIQDFakIUVDmjEdjU2o7q2w5uLYVaGrxT09PzVhybXJ7UekheomG5mSJh115b8aMCJJ6W5BoE_BaPNM_TUvwAAzVVDo5WoKZiJoUS_Ntb1uzQ8ptS6Qkfd2VvWD1ZzUER8hLzRxAqcr3b7VuWhNSzosVW53rcsNuO0gloB-OAJO-7VIylWxMsstEdBZfrfN3cKaJh0Hj6VymNiqWFVH7MHyKtqGePsK9O8RQj6qwfcrXO0AIQW0bhys"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50"
+        ></div>
+      </div>
+      <!-- Modal Backdrop -->
+      <div
+        class="absolute inset-0 z-10 bg-black/60 backdrop-blur-md flex items-center justify-center p-margin-mobile md:p-margin-desktop"
+      >
+        <!-- Login/Register Modal -->
+        <section
+          class="glass-panel amber-glow relative w-full max-w-[480px] rounded-xl overflow-hidden flex flex-col p-base md:p-md animate-in fade-in zoom-in duration-500"
+        >
+          <!-- Close Button -->
+          <button
+            class="absolute top-4 right-4 text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5"
+          >
+            <span class="material-symbols-outlined" data-icon="close"
+              >close</span
+            >
+          </button>
+          <!-- Brand Header -->
+          <div class="flex flex-col items-center gap-2 pt-md pb-lg">
+            <div class="flex items-center gap-2">
+              <span
+                class="material-symbols-outlined text-primary text-display-sm"
+                data-icon="movie"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >movie</span
+              >
+              <h1
+                class="font-display-sm text-display-sm font-bold text-primary tracking-tighter"
+              >
+                FilmFlare
+              </h1>
+            </div>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Step into the spotlight.
+            </p>
+          </div>
+          <!-- Navigation Tabs -->
+          <nav class="flex w-full border-b border-white/5 mb-lg">
+            <button
+              class="flex-1 pb-4 font-label-md text-label-md text-primary border-b-2 border-primary font-bold"
+            >
+              Sign In
+            </button>
+            <button
+              class="flex-1 pb-4 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+            >
+              Create Account
+            </button>
+          </nav>
+          <!-- Form Fields -->
+          <form class="space-y-md flex flex-col">
+            <!-- Username/Email -->
+            <div class="flex flex-col gap-2">
+              <label
+                class="font-label-sm text-label-sm text-on-surface-variant px-xs"
+                >Username or Email</label
+              >
+              <div class="relative group">
+                <span
+                  class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]"
+                  data-icon="person"
+                  >person</span
+                >
+                <input
+                  class="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-12 pr-4 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                  placeholder="Enter your username"
+                  type="text"
+                />
+              </div>
+            </div>
+            <!-- Password -->
+            <div class="flex flex-col gap-2">
+              <div class="flex justify-between items-center px-xs">
+                <label
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Password</label
+                >
+                <a
+                  class="font-label-sm text-label-sm text-primary hover:underline"
+                  href="#"
+                  >Forgot?</a
+                >
+              </div>
+              <div class="relative group">
+                <span
+                  class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]"
+                  data-icon="lock"
+                  >lock</span
+                >
+                <input
+                  class="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-12 pr-12 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                  placeholder="••••••••"
+                  type="password"
+                />
+                <button
+                  class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface"
+                  type="button"
+                >
+                  <span
+                    class="material-symbols-outlined text-[20px]"
+                    data-icon="visibility"
+                    >visibility</span
+                  >
+                </button>
+              </div>
+            </div>
+            <!-- Login Button -->
+            <div class="pt-base">
+              <button
+                class="w-full bg-primary text-on-primary font-headline-md text-headline-md py-4 rounded-full font-bold shadow-[0_0_12px_rgba(245,166,35,0.3)] hover:scale-[1.02] active:scale-95 transition-all duration-200"
+              >
+                Sign In
+              </button>
+            </div>
+            <!-- Secondary Actions -->
+            <div class="flex flex-col items-center gap-md pt-base">
+              <div class="flex items-center gap-md w-full">
+                <div class="h-[1px] bg-white/10 flex-1"></div>
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >OR</span
+                >
+                <div class="h-[1px] bg-white/10 flex-1"></div>
+              </div>
+              <!-- Guest Link -->
+              <a
+                class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-base"
+                href="#"
+              >
+                Continue as guest
+                <span
+                  class="material-symbols-outlined text-[16px]"
+                  data-icon="arrow_forward"
+                  >arrow_forward</span
+                >
+              </a>
+            </div>
+          </form>
+          <!-- Social Login Option (Optional add-on for high-end feel) -->
+          <div class="flex justify-center gap-md pt-lg pb-md">
+            <button
+              class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-all"
+            >
+              <span
+                class="material-symbols-outlined text-on-surface-variant"
+                data-icon="mail"
+                >mail</span
+              >
+            </button>
+            <button
+              class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-all"
+            >
+              <span
+                class="material-symbols-outlined text-on-surface-variant"
+                data-icon="public"
+                >public</span
+              >
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+    <!-- Footer (Suppressed based on logic but included as per requirements for visibility of global styles) -->
+    <!-- We follow the "Shell Visibility & Relevance" mandate to prioritize the content canvas on transactional screens -->
+  </body>
+</html>

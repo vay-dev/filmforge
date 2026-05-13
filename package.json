@@ -12,6 +12,8 @@
   "dependencies": {
     "appwrite": "^18.2.0",
     "bootstrap": "^5.3.7",
+    "embla-carousel": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.540.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

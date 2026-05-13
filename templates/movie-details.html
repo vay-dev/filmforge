@@ -1,0 +1,720 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Interstellar Redux - FilmFlare</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#1d2023",
+              background: "#101417",
+              "outline-variant": "#524534",
+              tertiary: "#cfd1de",
+              primary: "#ffc880",
+              "inverse-primary": "#835500",
+              "on-surface-variant": "#d7c3ae",
+              "inverse-surface": "#e0e2e6",
+              "on-secondary": "#293041",
+              "tertiary-container": "#b3b5c2",
+              "on-secondary-container": "#b1b8cd",
+              "surface-tint": "#ffb955",
+              "on-primary": "#452b00",
+              "primary-fixed-dim": "#ffb955",
+              secondary: "#bfc6db",
+              "on-secondary-fixed": "#141b2b",
+              "on-error": "#690005",
+              surface: "#101417",
+              "on-secondary-fixed-variant": "#404758",
+              "on-tertiary": "#2d303a",
+              "inverse-on-surface": "#2d3134",
+              "on-background": "#e0e2e6",
+              "surface-bright": "#363a3d",
+              "surface-container-high": "#272a2d",
+              "secondary-fixed-dim": "#bfc6db",
+              "surface-variant": "#323538",
+              "surface-container-low": "#191c1f",
+              "surface-container-highest": "#323538",
+              "on-tertiary-fixed-variant": "#444651",
+              "on-primary-fixed-variant": "#633f00",
+              "on-error-container": "#ffdad6",
+              "surface-container-lowest": "#0b0f11",
+              "on-surface": "#e0e2e6",
+              "primary-container": "#f5a623",
+              "secondary-container": "#42495a",
+              "tertiary-fixed": "#e0e2ef",
+              "secondary-fixed": "#dce2f8",
+              outline: "#9f8e7a",
+              error: "#ffb4ab",
+              "tertiary-fixed-dim": "#c4c6d3",
+              "on-tertiary-fixed": "#181b25",
+              "on-primary-fixed": "#291800",
+              "on-primary-container": "#644000",
+              "primary-fixed": "#ffddb4",
+              "on-tertiary-container": "#444752",
+              "surface-dim": "#101417",
+              "error-container": "#93000a",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "container-max": "1440px",
+              unit: "8px",
+              "margin-desktop": "48px",
+              "margin-mobile": "16px",
+              gutter: "24px",
+            },
+            fontFamily: {
+              "body-lg": ["Inter"],
+              "headline-md": ["Inter"],
+              "body-md": ["Inter"],
+              "display-lg-mobile": ["Inter"],
+              "label-caps": ["Inter"],
+              "display-sm": ["Inter"],
+              "display-lg": ["Inter"],
+            },
+            fontSize: {
+              "body-lg": [
+                "18px",
+                {
+                  lineHeight: "1.6",
+                  fontWeight: "400",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "1.3",
+                  fontWeight: "600",
+                },
+              ],
+              "body-md": [
+                "16px",
+                {
+                  lineHeight: "1.5",
+                  fontWeight: "400",
+                },
+              ],
+              "display-lg-mobile": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  fontWeight: "700",
+                },
+              ],
+              "label-caps": [
+                "12px",
+                {
+                  lineHeight: "1.0",
+                  letterSpacing: "0.1em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-sm": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #080b14; /* Requested ultra-dark bg, overriding theme background slightly for the specific request */
+        color: theme("colors.on-background");
+      }
+      .glow-amber {
+        box-shadow: 0 0 15px rgba(245, 166, 35, 0.3);
+      }
+      .glass-panel {
+        background: rgba(28, 35, 51, 0.4);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .surface-container-custom {
+        background-color: #1c2333;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .movie-card-hover:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(245, 166, 35, 0.2);
+      }
+    </style>
+  </head>
+  <body
+    class="antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <!-- TopNavBar Shared Component -->
+    <header
+      class="bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-sm fixed top-0 w-full z-50"
+    >
+      <div
+        class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto"
+      >
+        <div class="flex items-center gap-8">
+          <a
+            class="text-headline-md font-headline-md text-primary tracking-tighter"
+            href="#"
+            >FilmFlare</a
+          >
+          <nav class="hidden md:flex gap-6">
+            <a
+              class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors hover:bg-white/5 transition-all duration-300 px-2 py-1 rounded"
+              href="#"
+              >Home</a
+            >
+            <a
+              class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1 active:scale-95 transition-transform"
+              href="#"
+              >Discover</a
+            >
+            <a
+              class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors hover:bg-white/5 transition-all duration-300 px-2 py-1 rounded"
+              href="#"
+              >Watchlist</a
+            >
+            <a
+              class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors hover:bg-white/5 transition-all duration-300 px-2 py-1 rounded"
+              href="#"
+              >AI Pick</a
+            >
+          </nav>
+        </div>
+        <div class="flex items-center gap-4">
+          <!-- Search bar implied on right, simplified here for the exact component definition -->
+          <button
+            class="text-on-surface-variant hover:text-primary transition-colors p-2 hover:bg-white/5 rounded-full"
+          >
+            <span
+              aria-hidden="true"
+              class="material-symbols-outlined"
+              data-icon="search"
+              >search</span
+            >
+          </button>
+          <button
+            class="text-on-surface-variant hover:text-primary transition-colors p-2 hover:bg-white/5 rounded-full relative"
+          >
+            <span
+              aria-hidden="true"
+              class="material-symbols-outlined"
+              data-icon="notifications"
+              >notifications</span
+            >
+            <span
+              class="absolute top-1 right-1 w-2 h-2 bg-primary-container rounded-full"
+            ></span>
+          </button>
+          <div
+            class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant cursor-pointer"
+          >
+            <img
+              alt="User Avatar"
+              class="w-full h-full object-cover"
+              data-alt="A close-up portrait of a user avatar, styled within the dark, premium FilmFlare app interface. The lighting is subtle, matching the high-end cinematic aesthetic."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbazT2jsgrOdQi-CljbE-FHGz5oJMwAT9IpmwiE2c0Oo5MzEE9pzelBSF8J8HUkI7Pmxt43Qg2LNeokebVfT9ZbKYweFaovYLjqxi9y67lwPi7TlLdbFtqAZYoIeHGpIAKxdntrkWt3iXrbKZvbCTfX5dBEqetL_LCIRvdvA_esVMujrUOSKN130YGe9rgMWZqkmFiZf-yzqm-HsjAaLpAo6lbuusud3Xcw2s2rDm4CPntws0JeyodeSCS3bzs2FaHlq_AaReKyok"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="flex-grow pt-20">
+      <!-- Top Section: Blurred Backdrop -->
+      <section class="relative w-full h-[614px] min-h-[500px] overflow-hidden">
+        <div
+          class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          data-alt="A vast, sprawling galaxy scene viewed from deep space. The image is blurred, acting as a cinematic backdrop for a movie detail page. The colors are deep cosmos blues and blacks with subtle starlight, overlayed with a heavy dark gradient."
+          style="
+            background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBKkyitU0feEz_52ArKV66mPi1NMh6I4eAlfqC6nbCeiusjkiCFVQZmAnNFWG0_YHHxNySRXZbrVCQoOzxW-5nBpmpFu41lv-cf1tt4zEz7LuRz7z3O8qOE_YgvAyZrhLoOlinqiAr-fOfhp06BbdxgMG-RpBjPHPBRzVo3kwlNFPmi2nuULvFEXkoKdoL74XbxZNOmOFcSHA8_a9q5eJCEoc4SQX9C2LNhaIQ3HvbsIKTb0vUNmxO-gSBMDtvAZ3teoe57Zq29REk&quot;);
+          "
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-[#080B14] via-[#080B14]/80 to-transparent"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-[#080B14] via-[#080B14]/60 to-transparent"
+        ></div>
+        <!-- Hero Content Container -->
+        <div class="absolute inset-0 flex items-end pb-16">
+          <div
+            class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-end"
+          >
+            <!-- Poster -->
+            <div class="md:col-span-3 lg:col-span-2 hidden md:block">
+              <div
+                class="w-full aspect-[2/3] rounded-lg overflow-hidden border border-white/10 glow-amber relative"
+              >
+                <img
+                  alt="Interstellar Redux Movie Poster"
+                  class="w-full h-full object-cover"
+                  data-alt="A cinematic movie poster for a sci-fi film called 'Interstellar Redux'. It shows a lone astronaut looking out towards a glowing wormhole. The overall tone is dark, moody, and epic, with amber highlights catching the edges of the spacesuit."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0xg0KErSzl24FzZLESsEdks-Nj2VLNThO6h6QKA0drMSQ_iEgesJwv8gx-eEME9M9cSy9FvfHvcx2gMPkp1H5Dj4YaKufPRsAyon8Tf_gkZM48zjjY5ZTrKyhR-SXZv6PYg8PCbKxDzCaXgM-f5h278lEME9M9cSy9FvfHvcx2gMPkp1H5Dj4YaKufPRsAyon8Tf-brixH5_A1lPSvtlK_eFYZrSpAmoTK6Zt6P6eS-_0YFZDrZZsu5qimlS2hvPKeDitciSrz0aq4"
+                />
+                <div class="absolute bottom-0 w-full h-1 bg-surface-container">
+                  <div class="h-full bg-primary-container w-[45%]"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Info -->
+            <div class="md:col-span-9 lg:col-span-10 flex flex-col gap-4 z-10">
+              <div>
+                <h1
+                  class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface tracking-tighter mb-2"
+                >
+                  Interstellar Redux
+                </h1>
+                <p
+                  class="font-body-lg text-body-lg text-on-surface-variant italic opacity-80"
+                >
+                  Beyond the reach of time
+                </p>
+              </div>
+              <div class="flex flex-wrap items-center gap-3">
+                <span
+                  class="bg-primary-container/10 backdrop-blur-md text-primary-container font-label-caps text-label-caps px-3 py-1 rounded-full border border-primary-container/20"
+                  >Sci-Fi</span
+                >
+                <span
+                  class="bg-primary-container/10 backdrop-blur-md text-primary-container font-label-caps text-label-caps px-3 py-1 rounded-full border border-primary-container/20"
+                  >Drama</span
+                >
+                <span
+                  class="bg-primary-container/10 backdrop-blur-md text-primary-container font-label-caps text-label-caps px-3 py-1 rounded-full border border-primary-container/20"
+                  >IMAX</span
+                >
+                <div class="w-1 h-1 rounded-full bg-outline-variant mx-2"></div>
+                <div
+                  class="flex items-center gap-1 text-on-surface-variant font-label-caps text-label-caps"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="material-symbols-outlined text-primary-container text-sm"
+                    data-icon="star"
+                    data-weight="fill"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >star</span
+                  >
+                  <span
+                    >4.9/5 <span class="opacity-60">(12.4k reviews)</span></span
+                  >
+                </div>
+                <div
+                  class="w-1 h-1 rounded-full bg-outline-variant mx-2 hidden sm:block"
+                ></div>
+                <span
+                  class="text-on-surface-variant font-label-caps text-label-caps hidden sm:block"
+                  >2024</span
+                >
+                <div
+                  class="w-1 h-1 rounded-full bg-outline-variant mx-2 hidden sm:block"
+                ></div>
+                <span
+                  class="text-on-surface-variant font-label-caps text-label-caps hidden sm:block"
+                  >2h 45m</span
+                >
+                <div
+                  class="w-1 h-1 rounded-full bg-outline-variant mx-2 hidden sm:block"
+                ></div>
+                <span
+                  class="text-on-surface-variant font-label-caps text-label-caps hidden sm:block"
+                  >English</span
+                >
+              </div>
+              <div class="flex flex-wrap gap-4 mt-4">
+                <button
+                  class="bg-primary-container text-on-primary font-body-md text-body-md font-semibold px-8 py-3 rounded-full glow-amber hover:opacity-90 transition-opacity flex items-center gap-2"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="material-symbols-outlined"
+                    data-icon="play_arrow"
+                    data-weight="fill"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >play_arrow</span
+                  >
+                  Watch Trailer
+                </button>
+                <button
+                  class="border border-on-surface text-on-surface font-body-md text-body-md font-semibold px-8 py-3 rounded-full hover:bg-white/10 transition-colors flex items-center gap-2"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="material-symbols-outlined"
+                    data-icon="add"
+                    >add</span
+                  >
+                  Add to Watchlist
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Main Content Area -->
+      <div
+        class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 grid grid-cols-1 lg:grid-cols-12 gap-12"
+      >
+        <!-- Left Column: Details -->
+        <div class="lg:col-span-8 flex flex-col gap-12">
+          <!-- Description -->
+          <section>
+            <h2 class="font-headline-md text-headline-md text-on-surface mb-4">
+              Synopsis
+            </h2>
+            <p
+              class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-3xl"
+            >
+              In a future where Earth is becoming increasingly uninhabitable, a
+              group of explorers must travel beyond our solar system in search
+              of a new home for humanity. Navigating through a newly discovered
+              wormhole, they face the harsh realities of relativity, alien
+              landscapes, and the profound isolation of deep space, testing the
+              limits of their endurance and the enduring power of human
+              connection.
+            </p>
+          </section>
+          <!-- AI Feature Panel -->
+          <section
+            class="glass-panel rounded-xl p-6 relative overflow-hidden group"
+          >
+            <div
+              class="absolute top-0 left-0 w-1 h-full bg-primary-container"
+            ></div>
+            <div class="flex items-start gap-4">
+              <span
+                aria-hidden="true"
+                class="material-symbols-outlined text-primary-container mt-1"
+                data-icon="temp_preferences_custom"
+                >temp_preferences_custom</span
+              >
+              <div>
+                <h3
+                  class="font-headline-md text-headline-md text-on-surface mb-3 flex items-center gap-2"
+                >
+                  Why you'll love this
+                  <span
+                    class="bg-primary-container/20 text-primary-container font-label-caps text-label-caps px-2 py-0.5 rounded ml-2"
+                    >AI Pick</span
+                  >
+                </h3>
+                <ul
+                  class="space-y-2 font-body-md text-body-md text-on-surface-variant italic"
+                >
+                  <li class="flex items-start gap-2">
+                    <span class="text-primary-container mt-1">•</span>
+                    <span
+                      >Masterful pacing that builds tension without sacrificing
+                      emotional depth.</span
+                    >
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-primary-container mt-1">•</span>
+                    <span
+                      >A visually stunning depiction of black holes and
+                      relativity that feels grounded in real science.</span
+                    >
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-primary-container mt-1">•</span>
+                    <span
+                      >A profound exploration of love and sacrifice that
+                      transcends the typical sci-fi narrative.</span
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <!-- Cast -->
+          <section>
+            <h2 class="font-headline-md text-headline-md text-on-surface mb-6">
+              Top Cast
+            </h2>
+            <div class="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+              <div class="flex flex-col items-center gap-2 min-w-[100px]">
+                <div
+                  class="w-20 h-20 rounded-full border border-white/10 overflow-hidden"
+                >
+                  <img
+                    alt="Matthew McConaughey Avatar"
+                    class="w-full h-full object-cover"
+                    data-alt="A stylized portrait headshot of an actor resembling Matthew McConaughey. The image is processed with a subtle cinematic grade, fitting the dark, premium UI of the movie platform."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAMdHUAd5hrVkQqHpMW-1senGaYy2FVjzQ5j_Qoxlrg0EubNhvuWlQcIY_RHD-nY4aBxWM9-pk4GuIkEywIKOt0IHGLbl-XUJ5hWlyUHzKL0v9GISCCPCCOpfUwYmScVYL3PAuh9Bh3gX7rFN1hyp2ouInVC9OcJ9FO-fsIa2TwqN0quq3KF47q6KFmaDnMQBmLfy59ji7czjJxxYUDVQN8ImCVLqy-EfUGeyT5iN-OKhpMY_8d7ck9jKCTjjrkb5O2CsZsI4LQNE"
+                  />
+                </div>
+                <span
+                  class="font-body-md text-body-md text-on-surface text-center leading-tight"
+                  >Matthew<br />McConaughey</span
+                >
+              </div>
+              <div class="flex flex-col items-center gap-2 min-w-[100px]">
+                <div
+                  class="w-20 h-20 rounded-full border border-white/10 overflow-hidden"
+                >
+                  <img
+                    alt="Anne Hathaway Avatar"
+                    class="w-full h-full object-cover"
+                    data-alt="A stylized portrait headshot of an actress resembling Anne Hathaway. The image is processed with a subtle cinematic grade, fitting the dark, premium UI of the movie platform."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw_SQSH6oXaXCMnsEt9oNtLOlUQDvDUxFShoWWbHougyHjr0tFz3E38fX8e0bnTUpya-P0mXW--Ht8jGty4TNwtY2cS5Bihk6e3IfdNrldmMTmo4OdJTyN6LqfkXJDhWvwK6IsKyhFZvwUk9v3rzEJV3o9eJ-Lq980vYROtHPaEks8WiaJTwlCWvmKpHXmXxoItZGRucI9PoM-UQDvDUxFShoWWbHougyHjr0tFz3E38fX8e0bnTUpya-P0mXW-NInlmRfGdog5KE"
+                  />
+                </div>
+                <span
+                  class="font-body-md text-body-md text-on-surface text-center leading-tight"
+                  >Anne<br />Hathaway</span
+                >
+              </div>
+              <div class="flex flex-col items-center gap-2 min-w-[100px]">
+                <div
+                  class="w-20 h-20 rounded-full border border-white/10 overflow-hidden"
+                >
+                  <img
+                    alt="Jessica Chastain Avatar"
+                    class="w-full h-full object-cover"
+                    data-alt="A stylized portrait headshot of an actress resembling Jessica Chastain. The image is processed with a subtle cinematic grade, fitting the dark, premium UI of the movie platform."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4tEdsAL0hpKj5_Q2zCHmMzA8gnQq8tijJc3VIGLkNpmT4TWiOryRmDXexnNmdd00hdyxuWZ73JoQ5cDGQbpgWVTTH-S7M4GOOfC84XgeNUM2MCF7BKewlYG54xpEXtxp6gE77zScRwLlyAsiIjD5YZXDFBrH3JGUQDvDUxFShoWWbHougyHjr0tFz3E38fX8e0bnTUpya-P0mXW_YTQvYiK51cwnvBXBXFkutVaV7K_8iA8spiAdAveJBH0q4xTb1THRwosZggx4"
+                  />
+                </div>
+                <span
+                  class="font-body-md text-body-md text-on-surface text-center leading-tight"
+                  >Jessica<br />Chastain</span
+                >
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- Right Column: Media / Extra -->
+        <div class="lg:col-span-4 flex flex-col gap-12">
+          <!-- Trailer Embed -->
+          <section>
+            <h2 class="font-headline-md text-headline-md text-on-surface mb-4">
+              Official Trailer
+            </h2>
+            <div
+              class="surface-container-custom rounded-xl overflow-hidden aspect-video relative group cursor-pointer"
+            >
+              <img
+                alt="Trailer Thumbnail"
+                class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                data-alt="A dramatic wide shot of an alien landscape from a sci-fi movie. A massive, wave-like structure looms in the distance under a strange sky. The image is used as a thumbnail for a video player in a dark UI."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDky73-S4mp4mXowxzReBz-v-nTMHxtqHNcLO3fAsqtSvm2u16GfAIP5QQKKKWL_Z_N1iOVlZ5E_uGqTI1YXNBUemgJlOGqQ5He05l4GyiYvsf7x4SXYJz7fnspP-UFO5evBhKNHZ-a2M6-20XPziYMEME9M9cSy9FvfHvcx2gMPkp1H5Dj4YaKufPRsAyon8Tf_kplLXuCZA5wzlT6lhPTwWGkMWxlhWhB4M7v-Evh1CkxtOuTVIjfWpxQn4pMCiSxwxSmy20VLmA"
+              />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div
+                  class="w-16 h-16 bg-black/60 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 group-hover:bg-primary-container group-hover:text-on-primary transition-colors duration-300"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="material-symbols-outlined text-4xl"
+                    data-icon="play_arrow"
+                    data-weight="fill"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >play_arrow</span
+                  >
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- Recommendations Row -->
+      <section
+        class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 mb-12"
+      >
+        <h2 class="font-headline-md text-headline-md text-on-surface mb-6">
+          More Like This
+        </h2>
+        <div class="flex gap-6 overflow-x-auto pb-8 scrollbar-hide snap-x">
+          <!-- Card 1 -->
+          <div
+            class="min-w-[160px] md:min-w-[200px] snap-start movie-card-hover transition-all duration-300 relative rounded-lg bg-surface-container-custom"
+          >
+            <div
+              class="aspect-[2/3] rounded-lg overflow-hidden border border-white/10 relative"
+            >
+              <img
+                alt="Movie Poster"
+                class="w-full h-full object-cover"
+                data-alt="A sci-fi movie poster showing a lone space station orbiting a glowing blue planet. The design is sleek, dark, and highly cinematic."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4AZzRmoEuPKDkQBzeQKrUrftHRlRgTgF-yQy8Tfn6GPALvYJhR8gFK9FWmbk4GMUCuzfcxWpH9rzo25qlrOBNuN_9stUxLQXgJl9QOSCB6oe3Hlns7Ben4yFwSfOQypDJGPwndNmm62h3zzs_WOod4I7P4k78uqg6dUQDvDUxFShoWWbHougyHjr0tFz3E38fX8e0bnTUpya-P0mXW_Cr2xeVeUNNej2mVKquujOcWgNCsm965oPP3n184Q6tdAN3bpv9EHm_JNQ"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4"
+              >
+                <span
+                  class="font-body-md text-body-md text-on-surface font-semibold"
+                  >Gravity</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="min-w-[160px] md:min-w-[200px] snap-start movie-card-hover transition-all duration-300 relative rounded-lg bg-surface-container-custom"
+          >
+            <div
+              class="aspect-[2/3] rounded-lg overflow-hidden border border-white/10 relative"
+            >
+              <img
+                alt="Movie Poster"
+                class="w-full h-full object-cover"
+                data-alt="A sci-fi movie poster featuring an abstract representation of a black hole with a glowing accretion disk. The colors are deep purples and bright oranges."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw_ona25hh2WEDc1rWV-diHNy3TRbmY9Cs7ydOkkG8HUCzfJI6TMpJGaKyu1Brzl1XGAz-4meVf2vT8M-7QIkac06muvaq6GPTlD7ildSbw-_x-J0-sn1aqNuqjzccsHEad_5s170y3s4bVnELU9MPu-YQ_IZA4HRLMMEqhI5O26e-JMlutj5av-Vo7VGg_9Cg8Zr1qNe0X0W455Rmm40e74XKRdpGqNJGRDhUhgpxG67MBlwrMSSFqGvcYMlkx3CRJLG3mF6yYJ0"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4"
+              >
+                <span
+                  class="font-body-md text-body-md text-on-surface font-semibold"
+                  >Event Horizon</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div
+            class="min-w-[160px] md:min-w-[200px] snap-start movie-card-hover transition-all duration-300 relative rounded-lg bg-surface-container-custom"
+          >
+            <div
+              class="aspect-[2/3] rounded-lg overflow-hidden border border-white/10 relative"
+            >
+              <img
+                alt="Movie Poster"
+                class="w-full h-full object-cover"
+                data-alt="A sci-fi movie poster depicting a distant nebula in vibrant pinks and blues. A small silhouette of a spaceship is visible in the foreground."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL6IfStMgOVWav0_m0YADp6tADyyTJHFtvcdUKbA27S6-EVXWfgt9I1tQhnhUQDvDUxFShoWWbHougyHjr0tFz3E38fX8e0bnTUpya-P0mXW_nP3oZTbxybRSIdzC_l3ySpx_wj3Uet1BcrOJbovuUr-YdyNOlJgyef2XOfdXNASiNzOwXW0JuKZnYTWL8MspeH62QiA-JxETGF67ItMdTtaZRZ0zHGBHvc24arXVa2-j2AleCvTRl5n4b89k-dbJRGGDiqf4Xlnw"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4"
+              >
+                <span
+                  class="font-body-md text-body-md text-on-surface font-semibold"
+                  >Ad Astra</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div
+            class="min-w-[160px] md:min-w-[200px] snap-start movie-card-hover transition-all duration-300 relative rounded-lg bg-surface-container-custom"
+          >
+            <div
+              class="aspect-[2/3] rounded-lg overflow-hidden border border-white/10 relative"
+            >
+              <img
+                alt="Movie Poster"
+                class="w-full h-full object-cover"
+                data-alt="A sci-fi movie poster showing a futuristic cityscape at night, viewed from orbit. The city lights glow brightly against the dark surface of the planet."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDda2mW2nome0ymCuCwqbsemqZI8_3Sif9kc4nQVxGpvsl4aWarPMB4Lh3-fuKdos_eNPRVKm-UQDvDUxFShoWWbHougyHjr0tFz3E38fX8e0bnTUpya-P0mXW_UOvrUO6I_WvT8f2X8vhDOr_wDifGDaCZXue51fNu_s-sYDcPy8qDvrdP1y35LzFiCOeZ6-nBnay3f9rf7QUsjJDnYRFtr5h5INvHyo70zzxksn-_4ab_M4Saux1K7NU8pwu7JbvlsfCPUA13ybk"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4"
+              >
+                <span
+                  class="font-body-md text-body-md text-on-surface font-semibold"
+                  >Arrival</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 5 -->
+          <div
+            class="min-w-[160px] md:min-w-[200px] snap-start movie-card-hover transition-all duration-300 relative rounded-lg bg-surface-container-custom"
+          >
+            <div
+              class="aspect-[2/3] rounded-lg overflow-hidden border border-white/10 relative"
+            >
+              <img
+                alt="Movie Poster"
+                class="w-full h-full object-cover"
+                data-alt="A sci-fi movie poster featuring an astronaut helmet reflecting a barren, red alien landscape. The mood is tense and isolated."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAweg_yLUNBeqDTvxado0GrarbghN7eujVr-6lCpLM7MzIMa-UreDjyw9NKKRLpRnsc8luHtpKlcm7JcGJimUXIcg47AAtUckxWnp99Fol9QZZarLXdMnlCZpcJ__Js2oofSOvrvF3AEjj1QVfNygBTd4glZsvJ_mqo9XO-T1Sfcur_Knum1_HA-hCb2G-pKp4JXTXO20FenpvIA3wRrQSvZs15k72IyMNDFnvyjpqOmopFiBh-GY0JqG0XtBLTTq2v945IMpIMlCE"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4"
+              >
+                <span
+                  class="font-body-md text-body-md text-on-surface font-semibold"
+                  >The Martian</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer Shared Component -->
+    <footer
+      class="bg-surface-container-lowest w-full py-12 border-t border-outline-variant mt-auto"
+    >
+      <div
+        class="flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-8 max-w-container-max mx-auto"
+      >
+        <div class="flex items-center gap-4">
+          <span class="text-body-lg font-headline-md text-primary"
+            >FilmFlare</span
+          >
+          <span class="font-label-caps text-label-caps text-on-surface-variant"
+            >© 2024 FilmFlare Cinematic. All rights reserved.</span
+          >
+        </div>
+        <nav class="flex gap-6">
+          <a
+            class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Help Center</a
+          >
+          <a
+            class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Contact</a
+          >
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
