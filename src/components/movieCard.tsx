@@ -11,6 +11,8 @@ import './styles/movieCard.scss';
 interface Props {
   movie: Movie;
   onTrailer?: (movie: Movie) => void;
+  showDetails?: boolean;
+  isLarge?: boolean;
 }
 
 export default function MovieCard({ movie, onTrailer }: Props) {

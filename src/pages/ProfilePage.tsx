@@ -2,6 +2,7 @@ import { useState, useRef, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { auth } from '../services/api';
 import AuthGate from '../components/AuthGate';
+import Seo from '../components/Seo';
 import { useWatchlist } from '../context/WatchlistContext';
 import { useLikes } from '../context/LikesContext';
 import './styles/ProfilePage.scss';
@@ -11,6 +12,7 @@ type Tab = 'profile' | 'password';
 export default function ProfilePage() {
   return (
     <AuthGate icon="person" title="Sign in to view your profile" subtitle="Manage your account details and preferences.">
+      <Seo title="My Profile" path="/profile" noIndex />
       <ProfileContent />
     </AuthGate>
   );

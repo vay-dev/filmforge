@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLikes } from '../context/LikesContext';
 import TrailerModal from '../components/TrailerModal';
 import AuthGate from '../components/AuthGate';
+import Seo from '../components/Seo';
 import { useNavigate } from 'react-router-dom';
 import { posterUrl, formatRating, releaseYear, getGenreNames } from '../services/tmdb';
 import type { Movie } from '../services/tmdb';
@@ -27,6 +28,7 @@ export default function LikedPage() {
 
   return (
     <AuthGate icon="favorite" title="Your liked movies" subtitle="Sign in to save your favourite films and build your taste profile.">
+      <Seo title="Liked Movies" description="Movies you've liked on FilmFlare." path="/liked" />
       <TrailerModal movie={trailerMovie} onClose={() => setTrailerMovie(null)} />
 
       <div className="liked-page">

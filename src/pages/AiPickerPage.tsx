@@ -6,6 +6,7 @@ import { posterUrl, formatRating, releaseYear, getGenreNames } from '../services
 import { useWatchlist } from '../context/WatchlistContext';
 import TrailerModal from '../components/TrailerModal';
 import AuthGate from '../components/AuthGate';
+import Seo from '../components/Seo';
 import './styles/AiPickerPage.scss';
 
 interface Suggestion {
@@ -131,6 +132,7 @@ export default function AiPickerPage() {
 
   return (
     <AuthGate icon="auto_awesome" title="AI-powered picks" subtitle="Sign in to get personalised movie recommendations powered by AI.">
+      <Seo title="AI Movie Picker" description="Tell FilmFlare your mood and get AI-powered movie recommendations." path="/ai-pick" />
       <TrailerModal movie={trailerMovie} onClose={() => setTrailerMovie(null)} />
 
       <div className="ai-page">

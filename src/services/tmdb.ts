@@ -1,5 +1,5 @@
 const BASE = 'https://api.themoviedb.org/3';
-const TOKEN = import.meta.env.VITE_TMDB_API_ACCESS_TOKEN;
+const TOKEN = import.meta.env.VITE_TMDB_ACCESS_TOKEN ?? import.meta.env.VITE_TMDB_API_ACCESS_TOKEN;
 
 export const IMG_BASE = 'https://image.tmdb.org/t/p/w500';
 export const IMG_ORIGINAL = 'https://image.tmdb.org/t/p/original';

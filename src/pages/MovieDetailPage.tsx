@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { tmdb, posterUrl, formatRating, getGenreNames } from '../services/tmdb';
+import { tmdb, posterUrl, formatRating } from '../services/tmdb';
 import type { MovieDetail, Cast, Movie } from '../services/tmdb';
 import { useWatchlist } from '../context/WatchlistContext';
 import { useLikes } from '../context/LikesContext';
@@ -8,6 +8,7 @@ import { useAuth } from '../context/AuthContext';
 import MovieRow from '../components/MovieRow';
 import TrailerModal from '../components/TrailerModal';
 import AuthModal from '../components/AuthModal';
+import Seo from '../components/Seo';
 import './styles/MovieDetailPage.scss';
 
 export default function MovieDetailPage() {
@@ -81,6 +82,21 @@ export default function MovieDetailPage() {
       <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
 
       <div className="detail-page">
+        <Seo
+          title={movie.title}
+          description={movie.overview?.slice(0, 155) || undefined}
+          path={`/movie/${movie.id}`}
+          image={movie.backdrop_path ? `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}` : undefined}
+          type="article"
+          jsonLd={{
+            '@context': 'https://schema.org',
+            '@type': 'Movie',
+            name: movie.title,
+            description: movie.overview,
+            dateCreated: movie.release_date,
+            image: posterUrl(movie.poster_path) ?? undefined,
+          }}
+        />
         {/* Backdrop */}
         {backdrop && (
           <div className="detail-page__backdrop">

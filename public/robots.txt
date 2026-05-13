@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /profile
+Disallow: /watchlist
+Disallow: /liked
+Sitemap: https://filmflare.vercel.app/sitemap.xml

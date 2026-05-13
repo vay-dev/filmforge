@@ -3,10 +3,12 @@ import { useSearchParams } from 'react-router-dom';
 import HeroSection from '../components/HeroSection';
 import MovieRow from '../components/MovieRow';
 import TrailerModal from '../components/TrailerModal';
+import Seo from '../components/Seo';
 import { tmdb } from '../services/tmdb';
 import type { Movie } from '../services/tmdb';
 import { forYouApi } from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import { absoluteUrl } from '../lib/site';
 import './styles/HomePage.scss';
 
 interface RowState {
@@ -144,6 +146,16 @@ export default function HomePage() {
       <>
         <TrailerModal movie={trailerMovie} onClose={() => setTrailerMovie(null)} />
         <div className="home-page">
+          <Seo
+            path="/"
+            jsonLd={{
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'FilmFlare',
+              url: absoluteUrl('/'),
+              description: 'AI-powered movie discovery platform',
+            }}
+          />
           <div className="home-page__search-results">
             <MovieRow
               title={`Results for "${query}"`}
@@ -161,6 +173,16 @@ export default function HomePage() {
     <>
       <TrailerModal movie={trailerMovie} onClose={() => setTrailerMovie(null)} />
       <div className="home-page">
+        <Seo
+          path="/"
+          jsonLd={{
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'FilmFlare',
+            url: absoluteUrl('/'),
+            description: 'AI-powered movie discovery platform',
+          }}
+        />
         <HeroSection movies={heroMovies} onTrailer={setTrailerMovie} />
 
         <div className="home-page__rows">

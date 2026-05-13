@@ -4,6 +4,7 @@ import { useWatchlist } from '../context/WatchlistContext';
 import WatchlistCard from '../components/WatchlistCard';
 import TrailerModal from '../components/TrailerModal';
 import AuthGate from '../components/AuthGate';
+import Seo from '../components/Seo';
 import type { Movie } from '../services/tmdb';
 import './styles/WatchlistPage.scss';
 
@@ -40,6 +41,7 @@ export default function WatchlistPage() {
 
   return (
     <AuthGate icon="bookmark" title="Your watchlist awaits" subtitle="Sign in to save movies and track everything you want to watch.">
+      <Seo title="My Watchlist" description="Your saved movies on FilmFlare." path="/watchlist" />
       <TrailerModal movie={trailerMovie} onClose={() => setTrailerMovie(null)} />
 
       <div className="watchlist-page">

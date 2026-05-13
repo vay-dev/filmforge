@@ -35,9 +35,7 @@ export default function MovieRow({ title, badge, movies, loading = false, onTrai
   // Infinite scroll — load more when near the end
   const onScroll = useCallback(async () => {
     if (!emblaApi || !onLoadMore || !hasMore || loadingMore) return;
-    const { limit, offset } = emblaApi.scrollProgress()
-      ? { limit: 1, offset: emblaApi.scrollProgress() }
-      : { limit: 1, offset: 0 };
+    const offset = emblaApi.scrollProgress() || 0;
     if (offset >= 0.85) {
       setLoadingMore(true);
       await onLoadMore();
