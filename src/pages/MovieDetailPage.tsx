@@ -11,6 +11,59 @@ import AuthModal from '../components/AuthModal';
 import Seo from '../components/Seo';
 import './styles/MovieDetailPage.scss';
 
+// Streaming services — links search Google for where to watch
+const STREAMING = [
+  { name: 'Netflix', color: '#E50914', icon: 'N' },
+  { name: 'Prime Video', color: '#00A8E1', icon: 'P' },
+  { name: 'Apple TV+', color: '#555', icon: '' },
+  { name: 'Disney+', color: '#113CCF', icon: 'D+' },
+];
+
+function streamingSearchUrl(movieTitle: string, service: string) {
+  return `https://www.google.com/search?q=watch+${encodeURIComponent(movieTitle)}+on+${encodeURIComponent(service)}`;
+}
+
+function buildVerdict(movie: MovieDetail): string {
+  const score = movie.vote_average;
+  const genres = movie.genres.map(g => g.name).join(', ');
+  const year = movie.release_date ? new Date(movie.release_date).getFullYear() : '';
+
+  if (score >= 8) return `A must-watch ${genres.toLowerCase()} from ${year}. Critically acclaimed and genuinely hard to put down once it starts.`;
+  if (score >= 7) return `A solid ${genres.toLowerCase()} that delivers on its premise. Worth your evening — you won't regret it.`;
+  if (score >= 6) return `An entertaining ${genres.toLowerCase()} with enough going for it to make it worth a watch, especially for fans of the genre.`;
+  return `A divisive ${genres.toLowerCase()} — some will love it, some won't. Go in with an open mind.`;
+}
+
+function ScoreRing({ score }: { score: number }) {
+  const pct = score / 10;
+  const radius = 32;
+  const circumference = 2 * Math.PI * radius;
+  const dash = pct * circumference;
+  const color = score >= 7.5 ? '#22c55e' : score >= 6 ? '#f5a623' : '#ef4444';
+
+  return (
+    <div className="score-ring" title={`${score.toFixed(1)} / 10`}>
+      <svg width="80" height="80" viewBox="0 0 80 80">
+        <circle cx="40" cy="40" r={radius} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="6" />
+        <circle
+          cx="40" cy="40" r={radius}
+          fill="none"
+          stroke={color}
+          strokeWidth="6"
+          strokeLinecap="round"
+          strokeDasharray={`${dash} ${circumference}`}
+          strokeDashoffset={circumference * 0.25}
+          style={{ filter: `drop-shadow(0 0 6px ${color}88)`, transition: 'stroke-dasharray 1s ease' }}
+        />
+      </svg>
+      <div className="score-ring__inner">
+        <span className="score-ring__value" style={{ color }}>{score.toFixed(1)}</span>
+        <span className="score-ring__label">/ 10</span>
+      </div>
+    </div>
+  );
+}
+
 export default function MovieDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -164,6 +217,16 @@ export default function MovieDetailPage() {
                 <p className="detail-page__overview">{movie.overview}</p>
               )}
 
+              {/* FilmFlare Verdict */}
+              <div className="detail-page__verdict">
+                <div className="detail-page__verdict-header">
+                  <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>auto_awesome</span>
+                  <span>FilmFlare Verdict</span>
+                </div>
+                <p className="detail-page__verdict-text">{buildVerdict(movie)}</p>
+                <ScoreRing score={movie.vote_average} />
+              </div>
+
               <div className="detail-page__actions">
                 <button className="detail-page__btn detail-page__btn--primary" onClick={() => setShowTrailer(true)}>
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>play_arrow</span>
@@ -184,6 +247,30 @@ export default function MovieDetailPage() {
                   <span className="material-symbols-outlined" style={liked ? { fontVariationSettings: '"FILL" 1' } : {}}>favorite</span>
                   {liked ? 'Liked' : 'Like'}
                 </button>
+              </div>
+
+              {/* Where to Watch */}
+              <div className="detail-page__streaming">
+                <p className="detail-page__streaming-label">
+                  <span className="material-symbols-outlined">live_tv</span>
+                  Find where to watch
+                </p>
+                <div className="detail-page__streaming-chips">
+                  {STREAMING.map(s => (
+                    <a
+                      key={s.name}
+                      href={streamingSearchUrl(movie.title, s.name)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="detail-page__streaming-chip"
+                      style={{ '--service-color': s.color } as React.CSSProperties}
+                    >
+                      {s.icon && <span className="detail-page__streaming-chip-icon" style={{ color: s.color }}>{s.icon}</span>}
+                      {s.name}
+                      <span className="material-symbols-outlined" style={{ fontSize: 12 }}>open_in_new</span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

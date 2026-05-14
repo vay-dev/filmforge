@@ -15,6 +15,11 @@ interface Props {
   isLarge?: boolean;
 }
 
+function matchScore(vote: number): string {
+  const pct = Math.round((vote / 10) * 100);
+  return `${Math.max(pct, 60)}% Match`;
+}
+
 export default function MovieCard({ movie, onTrailer }: Props) {
   const navigate = useNavigate();
   const { loggedIn } = useAuth();
@@ -44,57 +49,57 @@ export default function MovieCard({ movie, onTrailer }: Props) {
               <span className="material-symbols-outlined">movie</span>
             </div>
           )}
-          <div className="movie-card__overlay-glow" />
-        </div>
 
-        <div className="movie-card__panel">
-          <div className="movie-card__panel-top">
-            <h3 className="movie-card__title" title={movie.title}>{movie.title}</h3>
-            <div className="movie-card__rating">
-              <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-              {formatRating(movie.vote_average)}
+          <div className="movie-card__overlay-glow" />
+
+          {movie.vote_average > 0 && (
+            <span className="movie-card__score">{matchScore(movie.vote_average)}</span>
+          )}
+
+          <span className="movie-card__genre-badge">{primaryGenre.toUpperCase()}</span>
+
+          <div className="movie-card__panel">
+            <div className="movie-card__panel-top">
+              <h3 className="movie-card__title" title={movie.title}>{movie.title}</h3>
+              <div className="movie-card__rating">
+                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
+                {formatRating(movie.vote_average)}
+              </div>
+            </div>
+
+            <div className="movie-card__meta">
+              <span>{releaseYear(movie.release_date)}</span>
+              {genres.length > 0 && <><span className="movie-card__dot" /><span>{primaryGenre}</span></>}
+            </div>
+
+            <div className="movie-card__actions" onClick={e => e.stopPropagation()}>
+              <button
+                className={`movie-card__icon-btn${inList ? ' movie-card__icon-btn--active' : ''}`}
+                onClick={() => requireAuth(() => toggleWatchlist(movie))}
+                aria-label={inList ? 'Remove from watchlist' : 'Add to watchlist'}
+              >
+                <span className="material-symbols-outlined" style={inList ? { fontVariationSettings: '"FILL" 1' } : {}}>bookmark</span>
+              </button>
+              <button
+                className={`movie-card__icon-btn${liked ? ' movie-card__icon-btn--liked' : ''}`}
+                onClick={() => requireAuth(() => toggleLike(movie))}
+                aria-label={liked ? 'Unlike' : 'Like'}
+              >
+                <span className="material-symbols-outlined" style={liked ? { fontVariationSettings: '"FILL" 1' } : {}}>favorite</span>
+              </button>
+              {onTrailer && (
+                <button
+                  className="movie-card__trailer-btn"
+                  onClick={() => onTrailer(movie)}
+                  aria-label="Watch trailer"
+                >
+                  <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>play_arrow</span>
+                  Trailer
+                </button>
+              )}
             </div>
           </div>
-
-          <div className="movie-card__meta">
-            <span>{releaseYear(movie.release_date)}</span>
-            {genres.length > 0 && <><span className="movie-card__dot" /><span>{primaryGenre}</span></>}
-          </div>
-
-          <div className="movie-card__actions" onClick={e => e.stopPropagation()}>
-            <button
-              className={`movie-card__icon-btn${inList ? ' movie-card__icon-btn--active' : ''}`}
-              onClick={() => requireAuth(() => toggleWatchlist(movie))}
-              aria-label={inList ? 'Remove from watchlist' : 'Add to watchlist'}
-            >
-              <span className="material-symbols-outlined" style={inList ? { fontVariationSettings: '"FILL" 1' } : {}}>
-                bookmark
-              </span>
-            </button>
-            <button
-              className={`movie-card__icon-btn${liked ? ' movie-card__icon-btn--liked' : ''}`}
-              onClick={() => requireAuth(() => toggleLike(movie))}
-              aria-label={liked ? 'Unlike' : 'Like'}
-            >
-              <span className="material-symbols-outlined" style={liked ? { fontVariationSettings: '"FILL" 1' } : {}}>
-                favorite
-              </span>
-            </button>
-
-            {onTrailer && (
-              <button
-                className="movie-card__trailer-btn"
-                onClick={() => onTrailer(movie)}
-                aria-label="Watch trailer"
-              >
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>play_arrow</span>
-                Trailer
-              </button>
-            )}
-          </div>
         </div>
-
-        <span className="movie-card__genre-badge">{primaryGenre.toUpperCase()}</span>
       </article>
     </>
   );
