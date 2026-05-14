@@ -1,5 +1,6 @@
-const raw = import.meta.env.VITE_SITE_URL?.trim();
+export const SITE_URL = 'https://enhanced-film-flare.vercel.app';
 
-export const SITE_URL = (raw && raw.length > 0 ? raw : 'https://filmflare.vercel.app').replace(/\/+$/, '');
-
-export const absoluteUrl = (path = '/') => `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`;
+export function absoluteUrl(path: string): string {
+  const base = import.meta.env.VITE_SITE_URL ?? SITE_URL;
+  return `${base.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
+}
