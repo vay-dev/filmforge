@@ -72,9 +72,13 @@ export default function Seo({
     upsertMeta('property', 'og:type', type);
     upsertMeta('property', 'og:url', url);
     upsertMeta('property', 'og:image', img);
+    upsertMeta('property', 'og:image:alt', fullTitle);
+    upsertMeta('property', 'og:site_name', 'FilmFlare');
+    upsertMeta('name', 'twitter:card', 'summary_large_image');
     upsertMeta('name', 'twitter:title', fullTitle);
     upsertMeta('name', 'twitter:description', desc);
     upsertMeta('name', 'twitter:image', img);
+    upsertMeta('name', 'twitter:image:alt', fullTitle);
     upsertLink('canonical', url);
 
     if (jsonLd) {

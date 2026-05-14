@@ -1,6 +1,14 @@
 User-agent: *
 Allow: /
+Allow: /ai-pick
 Disallow: /profile
 Disallow: /watchlist
 Disallow: /liked
-Sitemap: https://filmflare.vercel.app/sitemap.xml
+
+# Allow Google's crawlers full access to public pages
+User-agent: Googlebot
+Allow: /
+Disallow: /profile
+
+# Sitemap
+Sitemap: https://enhanced-film-flare.vercel.app/sitemap.xml

@@ -8,27 +8,66 @@
     <meta name="theme-color" content="#080b14" />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="FilmFlare" />
+    <meta name="keywords" content="FilmFlare, movie discovery, AI movie recommendations, watch trailers, movie watchlist, film finder, best movies, top rated films" />
     <link rel="canonical" href="https://enhanced-film-flare.vercel.app/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FilmFlare" />
+    <meta property="og:locale" content="en_GB" />
     <meta property="og:url" content="https://enhanced-film-flare.vercel.app/" />
     <meta property="og:title" content="FilmFlare - Discover Your Next Favourite Film" />
     <meta property="og:description" content="AI-powered movie discovery. Get personalised picks, track your watchlist, and watch trailers." />
     <meta property="og:image" content="https://enhanced-film-flare.vercel.app/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="FilmFlare - AI-powered movie discovery platform" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@FilmFlare" />
     <meta name="twitter:title" content="FilmFlare - Discover Your Next Favourite Film" />
     <meta name="twitter:description" content="AI-powered movie discovery. Get personalised picks, track your watchlist, and watch trailers." />
     <meta name="twitter:image" content="https://enhanced-film-flare.vercel.app/og-image.png" />
+    <meta name="twitter:image:alt" content="FilmFlare - AI-powered movie discovery platform" />
+
+    <!-- Structured Data (WebSite + SearchAction for Google Sitelinks Search) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "FilmFlare",
+      "alternateName": "Film Flare",
+      "url": "https://enhanced-film-flare.vercel.app/",
+      "description": "AI-powered movie discovery. Get personalised picks, track your watchlist, and watch trailers.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://enhanced-film-flare.vercel.app/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Structured Data (Organisation) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "FilmFlare",
+      "url": "https://enhanced-film-flare.vercel.app/",
+      "logo": "https://enhanced-film-flare.vercel.app/filmflare.png",
+      "sameAs": []
+    }
+    </script>
 
     <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/faveicons/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/faveicons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/faveicons/favicon-16x16.png" />
-    <link rel="apple-touch-icon" href="/faveicons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/faveicons/apple-touch-icon.png" />
     <link rel="manifest" href="/faveicons/site.webmanifest" />
   </head>
   <body>

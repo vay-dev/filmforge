@@ -132,7 +132,21 @@ export default function AiPickerPage() {
 
   return (
     <AuthGate icon="auto_awesome" title="AI-powered picks" subtitle="Sign in to get personalised movie recommendations powered by AI.">
-      <Seo title="AI Movie Picker" description="Tell FilmFlare your mood and get AI-powered movie recommendations." path="/ai-pick" />
+      <Seo
+        title="AI Movie Picker"
+        description="Tell FilmFlare your mood and get AI-powered movie recommendations personalised just for you."
+        path="/ai-pick"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'WebApplication',
+          name: 'FilmFlare AI Movie Picker',
+          url: 'https://enhanced-film-flare.vercel.app/ai-pick',
+          description: 'Describe your mood or a genre and get personalised AI-powered movie recommendations instantly.',
+          applicationCategory: 'EntertainmentApplication',
+          operatingSystem: 'Web',
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'GBP' },
+        }}
+      />
       <TrailerModal movie={trailerMovie} onClose={() => setTrailerMovie(null)} />
 
       <div className="ai-page">
