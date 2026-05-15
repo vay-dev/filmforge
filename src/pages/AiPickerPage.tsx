@@ -109,6 +109,78 @@ function TypewriterTitle() {
   );
 }
 
+// Pre-generated stable random values — never re-randomise on re-render
+const METEOR_DATA = Array.from({ length: 14 }, () => ({
+  left: `${Math.random() * 100}%`,
+  delay: `${Math.random() * 3}s`,
+  duration: `${2.5 + Math.random() * 4}s`,
+}));
+
+const STAR_DATA = Array.from({ length: 120 }, (_, i) => ({
+  left: `${Math.random() * 100}%`,
+  top: `${Math.random() * 100}%`,
+  size: 1 + Math.random() * 2,
+  delay: `${Math.random() * 4}s`,
+  duration: `${2 + Math.random() * 4}s`,
+  opacity: 0.2 + Math.random() * 0.7,
+  // every 3rd = warm gold, every 5th = purple, every 7th = halo glow
+  gold: i % 3 === 0,
+  purple: i % 5 === 0,
+  halo: i % 7 === 0,
+}));
+
+function CosmicBackground() {
+  const [phase, setPhase] = useState<'meteors' | 'transitioning' | 'stars'>('meteors');
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setPhase('transitioning'), 5000);
+    const t2 = setTimeout(() => setPhase('stars'), 6500);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
+
+  return (
+    <div className="cosmic-bg" aria-hidden="true">
+      <div className="cosmic-bg__orb cosmic-bg__orb--1" />
+      <div className="cosmic-bg__orb cosmic-bg__orb--2" />
+
+      {/* Meteors — fade out after 5s */}
+      <div className={`cosmic-bg__meteors${phase !== 'meteors' ? ' cosmic-bg__meteors--out' : ''}`}>
+        {METEOR_DATA.map((m, i) => (
+          <span
+            key={i}
+            className="cosmic-bg__meteor"
+            style={{ left: m.left, animationDelay: m.delay, animationDuration: m.duration }}
+          />
+        ))}
+      </div>
+
+      {/* Stars — fade in after transition */}
+      <div className={`cosmic-bg__stars${phase === 'stars' || phase === 'transitioning' ? ' cosmic-bg__stars--in' : ''}`}>
+        {STAR_DATA.map((s, i) => (
+          <span
+            key={i}
+            className={[
+              'cosmic-bg__star',
+              s.gold   ? 'cosmic-bg__star--gold'   : '',
+              s.purple ? 'cosmic-bg__star--purple'  : '',
+              s.halo   ? 'cosmic-bg__star--halo'    : '',
+            ].filter(Boolean).join(' ')}
+            style={{
+              left: s.left,
+              top: s.top,
+              width: `${s.size}px`,
+              height: `${s.size}px`,
+              animationDelay: s.delay,
+              animationDuration: s.duration,
+              opacity: s.opacity,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function FilmReelLoader() {
   return (
     <div className="ai-loader" aria-label="AI is thinking">
@@ -128,25 +200,6 @@ function FilmReelLoader() {
           <span>.</span><span>.</span><span>.</span>
         </span>
       </p>
-    </div>
-  );
-}
-
-function Meteors() {
-  const meteors = Array.from({ length: 12 });
-  return (
-    <div className="ai-meteors" aria-hidden="true">
-      {meteors.map((_, i) => (
-        <span
-          key={i}
-          className="ai-meteors__meteor"
-          style={{
-            left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 4}s`,
-            animationDuration: `${3 + Math.random() * 5}s`,
-          }}
-        />
-      ))}
     </div>
   );
 }
@@ -231,12 +284,7 @@ export default function AiPickerPage() {
       <TrailerModal movie={trailerMovie} onClose={() => setTrailerMovie(null)} />
 
       <div className="ai-page">
-        {/* Ambient background */}
-        <div className="ai-page__bg" aria-hidden="true">
-          <div className="ai-page__bg-orb ai-page__bg-orb--1" />
-          <div className="ai-page__bg-orb ai-page__bg-orb--2" />
-          <Meteors />
-        </div>
+        <CosmicBackground />
 
         {/* Header */}
         <div className="ai-page__header">

@@ -4,6 +4,7 @@ import { useWatchlist } from '../context/WatchlistContext';
 import { useLikes } from '../context/LikesContext';
 import { useAuth } from '../context/AuthContext';
 import AuthModal from './AuthModal';
+import LikeButton from './LikeButton';
 import { posterUrl, formatRating, releaseYear, getGenreNames } from '../services/tmdb';
 import type { Movie } from '../services/tmdb';
 import './styles/movieCard.scss';
@@ -80,13 +81,11 @@ export default function MovieCard({ movie, onTrailer }: Props) {
               >
                 <span className="material-symbols-outlined" style={inList ? { fontVariationSettings: '"FILL" 1' } : {}}>bookmark</span>
               </button>
-              <button
-                className={`movie-card__icon-btn${liked ? ' movie-card__icon-btn--liked' : ''}`}
+              <LikeButton
+                liked={liked}
                 onClick={() => requireAuth(() => toggleLike(movie))}
-                aria-label={liked ? 'Unlike' : 'Like'}
-              >
-                <span className="material-symbols-outlined" style={liked ? { fontVariationSettings: '"FILL" 1' } : {}}>favorite</span>
-              </button>
+                showLabel={false}
+              />
               {onTrailer && (
                 <button
                   className="movie-card__trailer-btn"

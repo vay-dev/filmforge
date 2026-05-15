@@ -1,0 +1,170 @@
+.glow-btn {
+  --border-radius: 24px;
+  --padding: 4px;
+  --transition: 0.35s;
+  --highlight-color-hue: 45deg;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.55em 1.4em 0.55em 1em;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: #101018;
+  color: rgba(255, 255, 255, 0.75);
+  transition:
+    box-shadow var(--transition),
+    border-color var(--transition),
+    background-color var(--transition),
+    transform 0.15s ease,
+    opacity 0.2s ease;
+
+  box-shadow:
+    inset 0px 1px 1px rgba(255,255,255,0.18),
+    inset 0px 2px 2px rgba(255,255,255,0.12),
+    inset 0px 4px 4px rgba(255,255,255,0.08),
+    inset 0px 8px 8px rgba(255,255,255,0.04),
+    0px 2px 4px rgba(0,0,0,0.4),
+    0px 4px 8px rgba(0,0,0,0.3);
+
+  // Outer glow ring
+  &::before {
+    content: '';
+    position: absolute;
+    inset: calc(0px - var(--padding));
+    border-radius: calc(var(--border-radius) + var(--padding));
+    pointer-events: none;
+    background-image: linear-gradient(0deg, #0006, #000c);
+    z-index: -1;
+    transition: box-shadow var(--transition), filter var(--transition);
+    box-shadow:
+      0 -8px 8px -6px transparent inset,
+      1px 1px 1px rgba(255,255,255,0.12),
+      2px 2px 2px rgba(255,255,255,0.06),
+      -1px -1px 1px rgba(0,0,0,0.15);
+  }
+
+  // Shimmer overlay — slides in on hover/active
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background-image: linear-gradient(
+      0deg,
+      #fff,
+      hsl(var(--highlight-color-hue), 100%, 70%),
+      hsla(var(--highlight-color-hue), 100%, 70%, 40%),
+      8%,
+      transparent
+    );
+    opacity: 0;
+    transition: opacity var(--transition);
+    mask-image: linear-gradient(0deg, #fff, transparent);
+  }
+
+  &__icon {
+    font-size: 0.9em;
+    opacity: 0.6;
+    transition: opacity var(--transition), transform var(--transition);
+    animation: glow-icon-pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+    z-index: 1;
+  }
+
+  // ── Hover ──────────────────────────────────────────────────────────────────
+  &:hover:not(:disabled) {
+    border-color: hsla(var(--highlight-color-hue), 100%, 80%, 0.4);
+    transform: translateY(-1px);
+
+    &::before {
+      box-shadow:
+        0 -8px 10px -6px rgba(255,255,255,0.6) inset,
+        0 -16px 16px -8px hsla(var(--highlight-color-hue), 100%, 70%, 0.25) inset,
+        1px 1px 1px rgba(255,255,255,0.15),
+        2px 2px 2px rgba(255,255,255,0.08);
+    }
+
+    &::after { opacity: 0.9; }
+
+    .glow-btn__icon {
+      opacity: 1;
+      animation: none;
+      transform: rotate(20deg) scale(1.2);
+    }
+  }
+
+  // ── Active ─────────────────────────────────────────────────────────────────
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+    border-color: hsla(var(--highlight-color-hue), 100%, 80%, 0.7);
+    background-color: hsla(var(--highlight-color-hue), 50%, 15%, 0.5);
+
+    &::before {
+      box-shadow:
+        0 -8px 14px -6px rgba(255,255,255,0.9) inset,
+        0 -16px 20px -8px hsla(var(--highlight-color-hue), 100%, 70%, 0.7) inset;
+    }
+
+    &::after { opacity: 1; }
+  }
+
+  // ── Disabled ───────────────────────────────────────────────────────────────
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  // ── Variants ───────────────────────────────────────────────────────────────
+  &--gold {
+    --highlight-color-hue: 45deg;
+    color: #f5c842;
+    .glow-btn__icon { color: #f5a623; }
+  }
+
+  &--blue {
+    --highlight-color-hue: 210deg;
+    color: #7dd3fc;
+    .glow-btn__icon { color: #38bdf8; }
+  }
+
+  &--purple {
+    --highlight-color-hue: 270deg;
+    color: #d8b4fe;
+    .glow-btn__icon { color: #a78bfa; }
+  }
+
+  // ── Sizes ──────────────────────────────────────────────────────────────────
+  &--sm {
+    font-size: 12px;
+    padding: 0.45em 1.1em 0.45em 0.85em;
+  }
+
+  &--md {
+    font-size: 14px;
+    padding: 0.55em 1.4em 0.55em 1em;
+  }
+
+  &--lg {
+    font-size: 16px;
+    padding: 0.65em 1.8em 0.65em 1.3em;
+  }
+}
+
+@keyframes glow-icon-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.15) rotate(10deg); }
+}

@@ -16,41 +16,6 @@
     gap: 24px;
   }
 
-  // ── Ambient background ──────────────────────────────────────────────────────
-
-  &__bg {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  &__bg-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-    opacity: 0.12;
-    animation: orb-float 8s ease-in-out infinite alternate;
-
-    &--1 {
-      width: 600px;
-      height: 600px;
-      top: -200px;
-      left: -200px;
-      background: radial-gradient(circle, #f5a623, transparent 70%);
-    }
-
-    &--2 {
-      width: 500px;
-      height: 500px;
-      bottom: -150px;
-      right: -150px;
-      background: radial-gradient(circle, #a78bfa, transparent 70%);
-      animation-delay: -4s;
-    }
-  }
-
   // ── Header ──────────────────────────────────────────────────────────────────
 
   &__header {
@@ -460,19 +425,51 @@
   }
 }
 
-// ── Meteors ───────────────────────────────────────────────────────────────────
+// ── Cosmic Background (meteors → shimmer stars) ───────────────────────────────
 
-.ai-meteors {
-  position: absolute;
+.cosmic-bg {
+  position: fixed;
   inset: 0;
+  z-index: -1;
+  pointer-events: none;
   overflow: hidden;
+
+  &__orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.12;
+    animation: orb-float 8s ease-in-out infinite alternate;
+
+    &--1 {
+      width: 600px; height: 600px;
+      top: -200px; left: -200px;
+      background: radial-gradient(circle, #f5a623, transparent 70%);
+    }
+    &--2 {
+      width: 500px; height: 500px;
+      bottom: -150px; right: -150px;
+      background: radial-gradient(circle, #a78bfa, transparent 70%);
+      animation-delay: -4s;
+    }
+  }
+
+  // Meteors layer
+  &__meteors {
+    position: absolute;
+    inset: 0;
+    transition: opacity 1.5s ease;
+    opacity: 1;
+
+    &--out { opacity: 0; }
+  }
 
   &__meteor {
     position: absolute;
     top: 0;
     width: 1px;
     height: 80px;
-    background: linear-gradient(to bottom, rgba(245, 166, 35, 0.8), transparent);
+    background: linear-gradient(to bottom, rgba(245, 166, 35, 0.9), transparent);
     border-radius: 9999px;
     transform: rotate(15deg);
     animation: meteor-fall linear infinite;
@@ -481,15 +478,54 @@
     &::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 2px;
-      height: 8px;
-      background: rgba(245, 166, 35, 0.9);
+      top: 0; left: 0;
+      width: 2px; height: 8px;
+      background: rgba(245, 166, 35, 1);
       border-radius: 50%;
-      box-shadow: 0 0 6px 2px rgba(245, 166, 35, 0.4);
+      box-shadow: 0 0 6px 3px rgba(245, 166, 35, 0.5);
     }
   }
+
+  // Stars layer
+  &__stars {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+
+    &--in { opacity: 1; }
+  }
+
+  &__star {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    animation: star-shimmer ease-in-out infinite;
+
+    &--gold   { background: #f5c842; }
+    &--purple { background: #c4b5fd; }
+    &--halo   {
+      box-shadow:
+        0 0 4px 1px rgba(255, 255, 255, 0.6),
+        0 0 8px 2px rgba(255, 255, 255, 0.2);
+    }
+    &--gold#{&}--halo {
+      box-shadow:
+        0 0 4px 1px rgba(245, 200, 66, 0.8),
+        0 0 10px 3px rgba(245, 166, 35, 0.3);
+    }
+    &--purple#{&}--halo {
+      box-shadow:
+        0 0 4px 1px rgba(167, 139, 250, 0.8),
+        0 0 10px 3px rgba(139, 92, 246, 0.3);
+    }
+  }
+}
+
+// ── (legacy) Meteors ──────────────────────────────────────────────────────────
+
+.ai-meteors {
+  display: none; // superseded by .cosmic-bg
 }
 
 // ── Result card ───────────────────────────────────────────────────────────────
@@ -801,4 +837,9 @@
   10%  { opacity: 1; }
   90%  { opacity: 0.4; }
   100% { transform: translateY(110vh) rotate(15deg); opacity: 0; }
+}
+
+@keyframes star-shimmer {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.4); }
 }
